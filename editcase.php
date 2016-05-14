@@ -2,19 +2,9 @@
 
 include("layout.php"); //this includes layout.php which contains the navbar and footer
 include_once("database.php");
-$sql = 'SELECT client_id, representative_last_name, representative_first_name  FROM clients WHERE client_id like "'.$_GET['value'].'"';
-
-if(isset($_POST['add_button'])){
-	$notes=$_POST['notes'];
-	$sql1="UPDATE cases SET notes='$notes'";
-	$result1 = $conn->query($sql1);
-	if(!$result){
-			echo $conn->error;
-	}
-	else{
-		echo('<meta http-equiv="refresh" content="0;URL=main.php"/>');
-	}		
-}
+$clid = $_GET['client'];
+$cid = $_GET['case'];
+$sql = 'SELECT clients.client_id, cases.client_id, clients.representative_last_name, clients.representative_first_name, cases.notes FROM cases,clients WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND clients.client_id=cases.client_id';
 
 ?>
 
@@ -30,13 +20,13 @@ $result = mysqli_query($conn, $sql);
 	echo('
 	</h2>
 	<div id="form_Addcase">
-	<form class="form-horizontal" action="submitCase.php?value='.$row['client_id'].'" method="post">
-	  <div class="form-group" ID="for_notes">
-	      <textarea class="form-control" rows="6" id="notes" placeholder="Enter notes"></textarea>
+	<form class="form-horizontal" action="submitEdit2.php?value='.$cid.'" method="post">
+	  <div class="form-group" id="for_notes">
+	      <textarea class="form-control" rows="8" id="notes" name="notes">'.$row['notes'].'</textarea>
 	  </div>
 	  <div class="form-group"> 
-	    <div class="col-sm-offset-4 col-sm-6">
-	      <button type="submit" class="btn btn-default" id="add_button">Update</button>
+	    <div class="col-sm-offset-3 col-sm-6">
+	      <button type="submit" class="btn btn-default" id="add_button" name="add_button">Update</button>
 	      <button type="submit" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/main.php\';">Cancel </button>
 	    </div>
 	  </div>

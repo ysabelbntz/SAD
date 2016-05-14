@@ -2,7 +2,7 @@
 
 include("layout.php"); //this includes layout.php which contains the navbar and footer
 include_once("database.php");
-$sql = 'SELECT client_id, representative_last_name, representative_first_name  FROM clients WHERE client_id like "'.$_GET['value'].'"';
+$sql = 'SELECT * FROM clients WHERE client_id like "'.$_GET['value'].'"';
 ?>
 
 <h1>EDIT CLIENT</h1>
@@ -33,19 +33,19 @@ echo('
   <div class="form-group">
     <label class="control-label col-sm-4" for="rep">Name of Representative </label>
     <div class="col-sm-3">
-          <input type="text" class="form-control form-control-inline2" id="last" placeholder="Enter last name" readonly>
+          <input type="text" class="form-control form-control-inline2" id="last" value="'.$row['representative_last_name'].'" readonly> 
     </div>
     <div class="col-sm-3">
-          <input type="text" class="form-control form-control-inline2" id="first" placeholder="Enter first name" readonly>
+          <input type="text" class="form-control form-control-inline2" id="first" value="'.$row['representative_first_name'].'" readonly>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-4" for="co">Name of Co-maker </label>
     <div class="col-sm-3">
-      <input type="text" class="form-control form-control-inline2" id="last" placeholder="Enter last name" readonly>
+      <input type="text" class="form-control form-control-inline2" id="last" value="'.$row['comaker_last_name'].'" readonly>
     </div>
     <div class="col-sm-3">
-      <input type="text" class="form-control form-control-inline2" id="first" placeholder="Enter first name" readonly>
+      <input type="text" class="form-control form-control-inline2" id="first" value="'.$row['comaker_first_name'].'" readonly>
     </div>
   </div>
 <!-- END OF DISABLED SECTION--> 
@@ -53,31 +53,31 @@ echo('
   <div class="form-group">
     <label class="control-label col-sm-4" for="company">Company Name </label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="company" name="company" placeholder="Enter company name">
+      <input type="text" class="form-control" id="company" name="company" value="'.$row['company_name'].'">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-4" for="tel">Contact Number </label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="tel" name="tel" placeholder="Enter telephone number">
+      <input type="text" class="form-control" id="tel" name="tel" value="'.$row['contact_number'].'">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-4" for="email">Email </label>
     <div class="col-sm-6">
-      <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+      <input type="email" class="form-control" id="email" name="email" value="'.$row['email'].'">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-4" for="oadd">Office Address </label>
     <div class="col-sm-6"> 
-      <textarea class="form-control" rows="3" id="oadd" name="oadd" placeholder="Enter address"></textarea>
+      <textarea class="form-control" rows="3" id="oadd" name="oadd">'.$row['address'].'</textarea>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-4" for="status">Status </label>
     <div class="col-sm-6">
-      <select class="form-control form-control-inline" id="status" name="status">
+      <select class="form-control form-control-inline" id="status" name="status" value="'.$row['classification'].'">
       <option>Active</option>
       <option>Risk</option>
       <option>Runaway</option>
@@ -87,12 +87,12 @@ echo('
   <div class="form-group">
     <label class="control-label col-sm-4" for="notes">Notes </label>
     <div class="col-sm-6">
-      <textarea class="form-control" rows="3" id="notes" name="notes" placeholder="Enter notes"></textarea>
+      <textarea class="form-control" rows="3" id="notes" name="notes">'.$row['notes'].'</textarea>
     </div>
   </div>
   <div class="form-group"> 
     <div class="col-sm-offset-4 col-sm-7">
-      <button type="submit" class="btn btn-default" id="add_button">Update</button>
+      <button type="submit" class="btn btn-default" id="add_button" name="add_button">Update</button>
       <button type="submit" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/addclient.php\';">Cancel </button>
     </div>
   </div>

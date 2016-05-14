@@ -93,9 +93,17 @@ include ('database.php');
     		}
         }
     ?>
-		<a href="input.php?client=<?php echo $local_id?>&case=<?php echo $row['case_id']?>"><i class="glyphicon glyphicon-plus" id="icons"></i></a>
-		<a href="editclient.php?value=<?php echo $local_id?>"><i class="glyphicon glyphicon-pencil" id="icons"></i></a>
-		<a href="addcase.php?value=<?php echo $local_id?>" id="icons"><i class="glyphicon glyphicon-level-up" id="icons"></i></a>
+    <?php
+    	$sql7 = "SELECT case_id FROM cases WHERE cases.client_id = '$local_id' AND cases.status = 'Active'";
+    	$result7 = $conn->query($sql7);
+    	if (mysqli_num_rows($result7) > 0) {
+        while($row = mysqli_fetch_assoc($result7)) {
+		echo('<a href="input.php?client='.$local_id.'&case='.$row['case_id'].'"><i class="glyphicon glyphicon-plus" id="icons"></i></a>
+		<a href="editcase.php?client='.$local_id.'&case='.$row['case_id'].'"><i class="glyphicon glyphicon-pencil" id="icons"></i></a>
+		<a href="addcase.php?value='.$local_id.'"><i class="glyphicon glyphicon-level-up" id="icons"></i></a>');
+			}
+		}
+	?>
 		</p>
 	</div>
 <br>

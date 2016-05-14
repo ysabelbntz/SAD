@@ -1,13 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $("button").click(function(){
-        $.ajax({});
-        }});
-    });
-});
-</script>
-
 <?php
 	include ('database.php');
 	session_start();

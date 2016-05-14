@@ -276,6 +276,16 @@ h2{
 	text-align: center;
 }
 
+#release2_head{
+	width: 5%;
+	padding-right: 2%;
+}
+
+#release3_head{
+	width: 23%;
+	text-align: center;
+}
+
 #loan_head, #amount_head{ /* loan and amount bal columns */
 	width: 12%;
 	text-align: center;
@@ -335,9 +345,9 @@ h2{
 /* EDITCASE.PHP */
 
 #for_notes{
-	width: 49%;
-	margin-left: 24%;
-	margin-top: 3%;
+	width: 79.5%;
+	margin-left: 1.8%;
+	margin-top: 2%;
 	margin-bottom: 2%;
 }
 

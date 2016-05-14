@@ -19,20 +19,21 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
         <table class="table table-striped">
           <thead id="colored_head">
             <tr>
-                <th id="officer_head">NAME</th>
-                <th id="email_head">EMAIL</th>
-                <th id="address_head">ADDRESS</th>
-                <th id="contact_head">CONTACT NO</th>
-                <th id="notes_head">NOTES</th>
-                <th id="cases_head">CASES</th>
-                <th id="casesf_head">CASES FINISHED</th>
+                <th id="client_head">NAME</th>
+                <th id="release2_head"> </th>
+                <th id="release3_head">EMAIL</th>
+                <th id="release3_head">ADDRESS</th>
+                <th id="release_head">CONTACT NO</th>
+                <th id="release_head">NOTES</th>
+                <th id="icons_head">CASES</th>
+                <th id="release_head">FINISHED CASES</th>
             </tr>
         </thead>
         <tbody>
         <?php
             include ('database.php');
 
-            $sql = "SELECT accounts.last_name, accounts.first_name, accounts.email, accounts.address, accounts.contact_number, accounts.notes FROM accounts;";
+            $sql = "SELECT account_id,accounts.last_name, accounts.first_name, accounts.email, accounts.address, accounts.contact_number, accounts.notes FROM accounts;";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0) {
@@ -41,6 +42,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
         ?>
                     <tr>
                         <td class="container"><?php echo $row['last_name'].", ".$row['first_name']?></td>
+                        <td class="container" id="logo_column"><a href="editofficer.php?value=<?php echo $row['account_id']?>"><i class="glyphicon glyphicon-pencil" id="icons"></i></a></td>
                         <td class="container" id="center_column"><?php echo $row['email']?></td>
                         <td class="container" id="center_column"><?php echo $row['address']?></td>
                         <td class="container" id="center_column"><?php echo $row['contact_number']?></td>
