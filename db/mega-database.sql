@@ -85,7 +85,7 @@ CREATE TABLE payment(
 	principal_paid DECIMAL(9,2) NOT NULL,
 	interest_paid DECIMAL(9,2) NOT NULL,
 	penalty FLOAT(4) NOT NULL, /*NUMBER OF DAYS LATE*25* SUBTRACT CURRENT DATE TO LAST DUE DATE*/
-	status VARCHAR(8) NOT NULL,	
+	status VARCHAR(8) NOT NULL,
 	notes TEXT,
 	CONSTRAINT payment_pk PRIMARY KEY (payment_id),
 	CONSTRAINT payment_fk1 FOREIGN KEY (client_id) REFERENCES clients(client_id),
@@ -107,6 +107,12 @@ CREATE TABLE logs
 	new_value VARCHAR(255) NOT NULL,
 	CONSTRAINT logs_pk PRIMARY KEY (log_id)
 );
+
+INSERT INTO accounts VALUES
+/*password: hehehe; password:whyucry*/
+/*encrypt password pls*/
+(1,'Anna', 'Melgar', "admelgar","$2a$10$J7ELAufFTDwm9REekaJSLObhlLnf7MCYvYBnt39ackgkuL.jUUkbi",'admin','anna.melgar@yahoo.com','09151230244','12111 Katipunan Avenue, Manila 1008','Go Anna!'),
+(2,'Mandy','Moore',"mmoore","$2a$04$VUO5cBCOCWCy2o6bc6yCseAz7n9FIo.hnVpqOV5IuiMlk6uDr4n8W",'officer','cry@gmail.com','09121144211','12311 J Santos street, QC 1211','Go Mandy!');
 
 
 
