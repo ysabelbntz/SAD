@@ -34,11 +34,11 @@ include ('database.php');
 		<?php
 		  	$local_id=$_GET['url_id'];
 
-            $sql = "SELECT cl.classification, cl.email, cl.comaker_last_name, cl.comaker_first_name, cl.contact_number, cl.company_name, cl.notes FROM clients cl WHERE cl.client_id = $local_id;";
-            $result = mysqli_query($conn, $sql);
+            $sql1 = "SELECT cl.classification, cl.email, cl.comaker_last_name, cl.comaker_first_name, cl.contact_number, cl.company_name, cl.notes FROM clients cl WHERE cl.client_id = $local_id;";
+            $result1 = mysqli_query($conn, $sql1);
 
-            if (mysqli_num_rows($result) > 0) {
-                while($row = mysqli_fetch_assoc($result)) {
+            if (mysqli_num_rows($result1) > 0) {
+                while($row = mysqli_fetch_assoc($result1)) {
         ?>
 	        	<tr>
 			      <td>Classification</td>
@@ -78,11 +78,11 @@ include ('database.php');
 		if (isset($_GET['url_id'])){
 		  	$local_id=$_GET['url_id'];
 
-            $sql = "SELECT DATE_FORMAT(c.date_of_release, '%b-%d-%y') AS rd, DATE_FORMAT(c.date_of_maturity, '%b-%d-%y') AS md FROM cases c WHERE c.client_id=$local_id;";
-            $result = mysqli_query($conn, $sql);
+            $sql2 = "SELECT DATE_FORMAT(c.date_of_release, '%b-%d-%y') AS rd, DATE_FORMAT(c.date_of_maturity, '%b-%d-%y') AS md FROM cases c WHERE c.client_id=$local_id;";
+            $result2 = mysqli_query($conn, $sql2);
 
-            if (mysqli_num_rows($result) > 0) {
-                while($row = mysqli_fetch_assoc($result)) {
+            if (mysqli_num_rows($result2) > 0) {
+                while($row = mysqli_fetch_assoc($result2)) {
     ?>
         	<p><?php echo $row['rd'].' to '.$row['md'];?>
     <?php
@@ -126,11 +126,11 @@ include ('database.php');
 		if (isset($_GET['url_id'])){
 		  	$local_id=$_GET['url_id'];
 
-            $sql = "SELECT c.date_of_release, c.loan_amount, c.weekly_interest_rate, c.payment_period, (c.loan_amount*c.weekly_interest_rate*c.payment_period) AS intBal, (c.loan_amount+intBal) AS totalBal FROM cases c WHERE c.client_id=$local_id;";
-            $result = mysqli_query($conn, $sql);;
+            $sql3 = "SELECT c.date_of_release, c.loan_amount, c.weekly_interest_rate, c.payment_period, (c.loan_amount*c.weekly_interest_rate*c.payment_period) intBal, (c.loan_amount+(c.loan_amount*c.weekly_interest_rate*c.payment_period)) totalBal FROM cases c WHERE c.client_id=$local_id;";
+            $result3 = mysqli_query($conn, $sql3);;
 
-            if (mysqli_num_rows($result) > 0) {
-                while($row = mysqli_fetch_assoc($result)) {
+            if (mysqli_num_rows($result3) > 0) {
+                while($row = mysqli_fetch_assoc($result3)) {
        	?>
         	<tr>
         		<td class="container" id="center_column">Release</td>
@@ -149,12 +149,12 @@ include ('database.php');
        	<!-- expected table -->
 		<?php
 		  	
-            $sql = "SELECT e.expected_id, DATE_FORMAT(e.expected_due_date, '%b-%d-%y') AS dd, e.principal_due, e.interest_due, e.total_due, e.expected_principal_balance, e.expected_interest_balance, e.expected_total_balance FROM cases, expected e WHERE cases.case_id=e.case_id AND e.client_id=$local_id;";
-            $result = mysqli_query($conn, $sql);
+            $sql4 = "SELECT e.expected_id, DATE_FORMAT(e.expected_due_date, '%b-%d-%y') AS dd, e.principal_due, e.interest_due, e.total_due, e.expected_principal_balance, e.expected_interest_balance, e.expected_total_balance FROM cases, expected e WHERE cases.case_id=e.case_id AND e.client_id=$local_id;";
+            $result4 = mysqli_query($conn, $sql4);
 
-            if (mysqli_num_rows($result) > 0) {
+            if (mysqli_num_rows($result4) > 0) {
                 // output data of each row
-                while($row = mysqli_fetch_assoc($result)) {
+                while($row = mysqli_fetch_assoc($result4)) {
         ?>
         	<tr>
         		<td class="container" id="center_column"><?php echo $row['expected_id']?></td>
@@ -199,11 +199,11 @@ include ('database.php');
 			if (isset($_GET['url_id'])){
 		  	$local_id=$_GET['url_id'];
 
-            $sql = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, c.actual_principal_balance, c.actual_interest_balance, c.actual_total_balance FROM cases c, payment p WHERE c.client_id=$local_id AND p.client_id=$local_id;";
-            $result = mysqli_query($conn, $sql);
+            $sql5 = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, c.actual_principal_balance, c.actual_interest_balance, c.actual_total_balance FROM cases c, payment p WHERE c.client_id=$local_id AND p.client_id=$local_id;";
+            $result5 = mysqli_query($conn, $sql5);
 
-            if (mysqli_num_rows($result) > 0) {
-                while($row = mysqli_fetch_assoc($result)) {
+            if (mysqli_num_rows($result5) > 0) {
+                while($row = mysqli_fetch_assoc($result5)) {
         ?>
         	<tr>
         		<td class="container" id="center_column"><?php echo $row['turn_date']?></td>

@@ -29,12 +29,11 @@ $(document).ready(function(){
 		$d = $Ymd[1];
 		$Y = $Ymd[2];
 		$dor = date("Y-m-d", mktime(0, 0, 0, $m, $d, $Y));//computes for date of release
-		$doe = date("Y-m-d", mktime(0, 0, 0, $m, $d+$daye, $Y));//computes for first expected due date
 		$dom = date("Y-m-d", mktime(0, 0, 0, $m, $d+$days, $Y));//computes for date of maturity
 
 		$idue = $loan*$r;
-		$tdue = $idue+$pdue;
 		$pdue = $loan/$weeks;
+		$tdue = $idue+$pdue;
 
 		$epb = $loan-$pdue;
 		//next few: $epb=$epb-$pdue
@@ -62,9 +61,19 @@ $(document).ready(function(){
 			//WHILE LOOP: like equate i to $ weeks then while i != 0 sya mangyayari, per each $i --
 
 			$i=1;
+			$doe = $dor;
 			while($i<=$weeks){
+				$doe = date("Y-m-d", mktime(0, 0, 0, $m, $d+7, $Y));//computes for first expected due date
+				$Ymd = explode ("-", $doe);
+				$Y = $Ymd[0];
+				$m = $Ymd[1];
+				$d = $Ymd[2];
 				$sql3 = "INSERT INTO expected(client_id,case_id,expected_due_date,expected_principal_balance,expected_interest_balance,expected_total_balance,principal_due,interest_due,total_due,status) VALUES('$id1','1','$doe','$epb','$eib','$etb','$pdue','$idue','$tdue','Unpaid')";
 				$result3 = $conn->query($sql3);
+				$tdue = $idue+$pdue;
+				$epb=$epb-$pdue;
+				$eib=$eib-$idue;
+				$etb=$epb+$eib;
 				$i++;
 			}
 			echo('<meta http-equiv="refresh" content="0;URL=main.php"/>');
