@@ -126,7 +126,7 @@ include ('database.php');
 		if (isset($_GET['url_id'])){
 		  	$local_id=$_GET['url_id'];
 
-            $sql3 = "SELECT c.date_of_release, c.loan_amount, c.weekly_interest_rate, c.payment_period, (c.loan_amount*c.weekly_interest_rate*c.payment_period) intBal, (c.loan_amount+(c.loan_amount*c.weekly_interest_rate*c.payment_period)) totalBal FROM cases c WHERE c.client_id=$local_id;";
+            $sql3 = "SELECT c.date_of_release, c.loan_amount, c.weekly_interest_rate, c.payment_period, (c.loan_amount*c.weekly_interest_rate*0.01) intBal, (c.loan_amount+(c.loan_amount*c.weekly_interest_rate*0.01)) totalBal FROM cases c WHERE c.client_id=$local_id;";
             $result3 = mysqli_query($conn, $sql3);;
 
             if (mysqli_num_rows($result3) > 0) {
@@ -137,8 +137,8 @@ include ('database.php');
         		<td class="container" id="center_column"><?php echo $row['date_of_release']?></td>
         		<td colspan="3"></td>
         		<td class="container" id="money"><?php echo $row['loan_amount']?></td>
-                <td class="container" id="money"><?php echo $row['intBal']?></td>
-                <td class="container" id="money"><?php echo $row['totalBal']?></td>
+                <td class="container" id="money"><?php $forIntBal = number_format($row['intBal'], 2); echo $forIntBal;?></td>
+                <td class="container" id="money"><?php $totIntBal = number_format($row['totalBal'], 2); echo $totIntBal;?></td>
             </tr>
         <?php
         		}
