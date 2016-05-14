@@ -1,37 +1,11 @@
 <?php
 
 
-require_once 'dompdf/autoload.inc.php';
+require_once ("fpdf/fpdf.php");
+$pdf=new FPDF;
+$pdf-> AddPage();
+$pdf-> SetFont("Arial","B", "20");
+$pdf-> Cell(0,10,"COLLECTIONS REPORT",1,1,"C");
+$pdf-> Output();
 
-// reference the Dompdf namespace
-use Dompdf\Dompdf;
-
-// instantiate and use the dompdf class
-$dompdf = new Dompdf();
-
-
-
-$content='
-
-	<html lang="en">
-	<head>
-		<link rel = "stylesheet" type = "text/css" href = "css/pdf.css">
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-	</head>
-	<body>
-		<h1>COLLECTIONS REPORT</h1>
-		<p>insert table here</p>
-	</body>
-
-';
-
-$dompdf->loadHtml($content);
-
-// (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'portrait');
-
-// Render the HTML as PDF
-$dompdf->render();
-
-// Output the generated PDF to Browser
-$dompdf->stream('my.pdf',array('Attachment'=>0));
+?>
