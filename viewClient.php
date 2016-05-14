@@ -39,10 +39,10 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
             if (mysqli_num_rows($result) > 0) {
                 // output data of each row
                 while($row = mysqli_fetch_assoc($result)) {
-        ?>
-                    <tr>
+        ?>  
+                    <tr onclick="document.location = 'view_single.php?url_id=<?php echo $row['client_id']?>';">
                         <td class="container" id="center_column"><?php echo $row['classification']?></td>
-                        <td class="container"><a href="view_single.php?url_id=<?php echo $row['client_id']?>"><?php echo $row['representative_last_name'].", ".$row['representative_first_name']?></a></td>
+                        <td class="container"><?php echo $row['representative_last_name'].", ".$row['representative_first_name']?></a></td>
                         <td class="container" id="logo_column"><a href="editclient.php?value=<?php echo $row['client_id']?>"><i class="glyphicon glyphicon-pencil" id="icons"></i></a><a href="input.php?client=<?php echo $row['client_id']?>&case=<?php echo $row['case_id']?>"><i class="glyphicon glyphicon-plus" id="icons"></i></a><a href="addcase.php?value=<?php echo $row['client_id']?>" id=><i class="glyphicon glyphicon-level-up" id="icons"></i></a></td>
                         <td class="container" id="center_column"><?php echo $row['date_of_release']?></td>
                         <td class="container" id="center_column"><?php echo $row['date_of_maturity']?></td>

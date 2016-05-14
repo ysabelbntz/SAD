@@ -76,7 +76,9 @@ $(document).ready(function(){
 				$etb=$epb+$eib;
 				$i++;
 			}
-			echo('<meta http-equiv="refresh" content="0;URL=main.php"/>');
+
+			echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?url_id='.$id1.'"/>');
+			
 		}		
 	}
 	else{

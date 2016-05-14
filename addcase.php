@@ -14,7 +14,8 @@
 
 include("layout.php"); //this includes layout.php which contains the navbar and footer
 include_once("database.php");
-$sql = 'SELECT client_id, representative_last_name, representative_first_name  FROM clients WHERE client_id like "'.$_GET['value'].'"';
+$sql = 'SELECT client_id, representative_last_name, representative_first_name  
+FROM clients WHERE client_id like "'.$_GET['value'].'"';
 ?>
 
 <h1>ADD CASE</h1>

@@ -413,12 +413,14 @@ h2{
 
 #single_details{
 	font-weight: bold;
+	width: 18%;
 }
 
 #single_spec_details{
 	text-decoration: none;
-	padding-left: 2vw;
-	padding-right: 2vw;
+	padding-left: 0.15vw;
+	padding-right: 5vw;
+	width: 32%;
 }
 
 #expected_table{
