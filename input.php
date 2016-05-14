@@ -2,7 +2,7 @@
 
 include("layout.php"); //this includes layout.php which contains the navbar and footer
 include_once("database.php");
-$sql = 'SELECT clients.client_id,cases.client_id, representative_last_name, representative_first_name  FROM clients,cases WHERE client_id like "'.$_GET['value'].'" AND clients.client_id=cases.client_id';
+$sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name  FROM clients WHERE clients.client_id = "'.$_GET['value'].'"';
 
 ?>
 <h1 id="h1_input">INPUT PAYMENT</h1>
@@ -79,7 +79,7 @@ echo('
   </div>
   </div>
 
-<form class="form-horizontal" action="submitInput.php?value='.$row['cases.client_id'].'" method="post" role="form" id="form_input">
+<form class="form-horizontal" action="submitInput.php?value='.$row['cases.case_id'].'" method="post" role="form" id="form_input">
   <div class="form-group">
     <label class="control-label col-sm-offset-2 col-sm-4" for="turn">Turn Date </label>
     <div class="col-sm-6">
