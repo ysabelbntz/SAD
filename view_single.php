@@ -75,6 +75,7 @@ include ('database.php');
 <!-- div for active case header with loan duration -->
 <div>
 	<h3 id="single_client_status">ACTIVE CASE</h3>
+	
 
 	<?php
 		if (isset($_GET['url_id'])){
@@ -86,7 +87,7 @@ include ('database.php');
             if (mysqli_num_rows($result2) > 0) {
                 while($row = mysqli_fetch_assoc($result2)) {
     ?>
-        	<p><?php echo $row['rd'].' to '.$row['md'];?>
+		<p style="margin-top:1%;"><?php echo $row['rd'].' to '.$row['md'];?>
     <?php
         		}
     		}
@@ -97,7 +98,7 @@ include ('database.php');
 		<a href="addcase.php"><i class="glyphicon glyphicon-level-up" id="icons"></i></a>
 		</p>
 	</div>
-
+<br>
 <!-- div for expected table -->
 <div class="table-responsive" id="div_tables">
 	<table class="table" id="expected_table">
@@ -225,11 +226,11 @@ include ('database.php');
 		</tbody>
 	</table>
 </div>
-
+<br>
 <!-- div for finished cases -->
 <div>
 	<h3 id="single_client_status">FINISHED CASES</h3>
-	<br>
+	<br><br>
 	No finished cases.
 	<!-- INSERT CODE HERE -->
 </div>
