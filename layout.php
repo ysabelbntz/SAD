@@ -62,6 +62,21 @@ include("authorization.php");
 			        	<ul class="dropdown-menu">
 			          		<li><a href="collection.php">Collections Report</a></li>
 			         		<li><a href="portfolio.php">Portfolios Report</a></li>
+			         		<li><a href="release.php">Release Report</a></li>
+			        	</ul>
+			      	</li>
+			      	<li class="dropdown">
+			        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">OFFICERS</a>
+			        	<ul class="dropdown-menu">
+			          		<li><a href="addofficer.php">Add Officer</a></li>
+			         		<li><a href="viewAllOfficers.php">View All Officers</a></li>
+			        	</ul>
+			      	</li>
+			      	<li class="dropdown">
+			        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">MAINTENANCE</a>
+			        	<ul class="dropdown-menu">
+			          		<li><a href="#">Backup</a></li>
+			         		<li><a href="#">Restore</a></li>
 			        	</ul>
 			      	</li>
 				</ul>
