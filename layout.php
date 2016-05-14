@@ -3,7 +3,10 @@
 session_start();
 
 include("authorization.php"); 
-
+include_once("database.php");
+$userid = $_SESSION['id'];
+$sql123 = 'SELECT account_type,account_id FROM accounts WHERE account_id like "'.$userid.'"';
+$result123 = mysqli_query($conn, $sql123);
 ?>
 <html lang="en">
 <head>
@@ -41,9 +44,17 @@ include("authorization.php");
 
 
 <div >
-<!-- if officer is logged in -->
+<!-- if admin is logged in -->
+<?php 
+  if (mysqli_num_rows($result123) > 0) 
+  {
+    while($row = mysqli_fetch_assoc($result123))
+    {
+$acct='Admin';
+if($row['account_type']===$acct){
+echo('
 <div class="top"style="text-align:right;">
-	Logged in as <?php print $_SESSION['username']?> || <a href="index.php" action="session_end()">Log out</a>
+	Logged in as '.$_SESSION['username'].'|| <a href="index.php" action="session_end()">Log out</a>
 	<div style="margin-bottom:1%;">
 		<div>
 			 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -85,9 +96,45 @@ include("authorization.php");
 	</div><!--removelater-->
 </div><!-- /.container-fluid -->
 		</nav>
-
+');
+}
+else{
+echo('
+<div class="top"style="text-align:right;">
+	Logged in as '.$_SESSION['username'].'|| <a href="index.php" action="session_end()">Log out</a>
+	<div style="margin-bottom:1%;">
+		<div>
+			 <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      	<ul class="nav navbar-nav navbar-right">
+				    <li class="active"><a href="main.php">HOME</a></li>
+					<li class="dropdown">
+			        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">CLIENTS</a>
+			        	<ul class="dropdown-menu">
+			          		<li><a href="addclient.php">Add Client</a></li>
+			         		<li><a href="viewClient.php">View All Clients</a></li>
+			        	</ul>
+			      	</li>
+			      	<li class="dropdown">
+			        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">COLLECTIONS</a>
+			        	<ul class="dropdown-menu">
+			          		<li><a href="collection.php">Collections Report</a></li>
+			         		<li><a href="portfolio.php">Portfolios Report</a></li>
+			        	</ul>
+			      	</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</div><!--removelater-->
+</div><!-- /.container-fluid -->
+		</nav>
+');
+}
+}
+}
+?>
 <!-- for whoever is logged in --> 
-			
+
     <!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
