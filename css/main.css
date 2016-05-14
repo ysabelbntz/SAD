@@ -397,6 +397,83 @@ h2{
 
 /* -------------------------------------------------------------------------------------------*/
 
+/* VIEW_SINGLE.PHP */
+
+#single_client_name{
+	margin-left: 0vw;
+	display: inline-block;
+	font-weight: bold;
+}
+
+#single_client_status{
+	margin-left: 0vw;
+	color: #F9BE4A;
+	display: inline;
+}
+
+#single_details{
+	font-weight: bold;
+}
+
+#single_spec_details{
+	text-decoration: none;
+	padding-left: 2vw;
+	padding-right: 2vw;
+}
+
+#expected_table{
+	float:left;
+	width:48vw;
+}
+
+#payment_table{
+	float:right;
+	width:34vw;
+}
+
+#single_heads{
+	background-color: #F9BE4A;
+	height: 7vh;
+	padding: 2%;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#dates{
+	text-align: center;
+	vertical-align: middle;
+	white-space:nowrap;
+}
+#center_balance{
+	background-color: #E6E6E6;
+	text-align: center;
+	vertical-align: middle;
+	white-space:nowrap;
+	font-weight: bold;
+}
+
+#center_due{
+	background-color: #F2F2F2;
+	text-align: center;
+	vertical-align: middle;
+	white-space:nowrap;
+	font-weight: bold;
+}
+
+#single_balance{
+	background-color: #E6E6E6;
+	text-align: right;
+	white-space:nowrap;
+}
+
+#single_due{
+	background-color: #F2F2F2;
+	text-align: right;
+	white-space:nowrap;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
 /* COLLECTION.PHP */
 
 #form_report{
