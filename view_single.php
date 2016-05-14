@@ -151,13 +151,14 @@ include ('database.php');
 		  	
             $sql4 = "SELECT e.expected_id, DATE_FORMAT(e.expected_due_date, '%b-%d-%y') AS dd, e.principal_due, e.interest_due, e.total_due, e.expected_principal_balance, e.expected_interest_balance, e.expected_total_balance FROM cases, expected e WHERE cases.case_id=e.case_id AND e.client_id=$local_id;";
             $result4 = mysqli_query($conn, $sql4);
+            $i = 1;
 
             if (mysqli_num_rows($result4) > 0) {
                 // output data of each row
                 while($row = mysqli_fetch_assoc($result4)) {
         ?>
         	<tr>
-        		<td class="container" id="center_column"><?php echo $row['expected_id']?></td>
+        		<td class="container" id="center_column"><?php echo $i; $i++; ?></td>
         		<td class="container" id="center_column"><?php echo $row['dd']?></td>
         		<td class="container" id="money"><?php echo $row['principal_due']?></td>
                 <td class="container" id="money"><?php echo $row['interest_due']?></td>

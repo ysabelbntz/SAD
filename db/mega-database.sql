@@ -85,13 +85,13 @@ CREATE TABLE payment(
 	principal_paid DECIMAL(9,2) NOT NULL,
 	interest_paid DECIMAL(9,2) NOT NULL,
 	penalty FLOAT(4) NOT NULL, /*NUMBER OF DAYS LATE*25* SUBTRACT CURRENT DATE TO LAST DUE DATE*/
-	status VARCHAR(8) NOT NULL,
+	status VARCHAR(8) NOT NULL,	
 	notes TEXT,
-	CONSTRAINT actual_pk PRIMARY KEY (actual_id),
-	CONSTRAINT actual_fk1 FOREIGN KEY (client_id) REFERENCES clients(client_id),
-	CONSTRAINT actual_fk2 FOREIGN KEY (account_id) REFERENCES accounts(account_id),
-	CONSTRAINT actual_fk3 FOREIGN KEY (case_id) REFERENCES cases(case_id),
-	CONSTRAINT actual_fk4 FOREIGN KEY (expected_id) REFERENCES expected(expected_id)
+	CONSTRAINT payment_pk PRIMARY KEY (payment_id),
+	CONSTRAINT payment_fk1 FOREIGN KEY (client_id) REFERENCES clients(client_id),
+	CONSTRAINT payment_fk2 FOREIGN KEY (account_id) REFERENCES accounts(account_id),
+	CONSTRAINT payment_fk3 FOREIGN KEY (case_id) REFERENCES cases(case_id),
+	CONSTRAINT payment_fk4 FOREIGN KEY (expected_id) REFERENCES expected(expected_id)
 );
 
 
