@@ -75,8 +75,8 @@ include("authorization.php");
 			      	<li class="dropdown">
 			        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">MAINTENANCE</a>
 			        	<ul class="dropdown-menu">
-			          		<li><a href="#">Backup</a></li>
-			         		<li><a href="#">Restore</a></li>
+			          		<li><a href="backup.php">Backup</a></li>
+			         		<li><a href="restore.php">Restore</a></li>
 			        	</ul>
 			      	</li>
 				</ul>
