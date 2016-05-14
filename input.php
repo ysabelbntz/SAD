@@ -4,7 +4,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 include_once("database.php");
 $clid = $_GET['client'];
 $cid = $_GET['case'];
-$sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name, cases.case_id, cases.loan_amount  FROM cases, clients WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND clients.client_id=cases.client_id';
+$sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name, cases.case_id, cases.loan_amount, cases.actual_interest_balance  FROM cases, clients WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND clients.client_id=cases.client_id';
 ?>
 <h1 id="h1_input">INPUT PAYMENT</h1>
 <h2 id="h2_input">
@@ -14,7 +14,6 @@ $result = mysqli_query($conn, $sql);
   {
     while($row = mysqli_fetch_assoc($result)) 
     {
-      echo $row['loan_amount'];
       echo $row['representative_last_name'].", ".$row['representative_first_name'];
       echo('
       </h2>
@@ -32,7 +31,7 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr>
             <td>Principal (Per Week)</td>
-            <td id="money">750.00</td>
+            <td id="money">'.$row['loan_amount'].'</td>
           </tr>
           <tr>
             <td>Weeks Late</td>
@@ -47,7 +46,7 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr>
             <td>Interest (Per Week)</td>
-            <td id="money">125.00</td>
+            <td id="money">'.$row['actual_interest_balance'].'</td>
           </tr>
           <tr>
             <td>Weeks Late</td>
