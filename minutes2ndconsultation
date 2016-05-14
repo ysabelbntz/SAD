@@ -1,0 +1,48 @@
+bakit may FK ng accounts yung mga tables?
+kasi siya na bahala
+
+Ano hinahandle ni accnt manager?
+you don't need to add the FK? We still need to add it
+
+REMOVE the "handled by"
+
+you should have a text file wherein dun na siya mag-aadd and not sa database
+pwede naman both
+but if you're going to put it in the database, it's a floating table (you don't need to connect it to any table)
+
+NOTES gawing text???
+Address ^same
+
+Change all money to decimal
+
+EXPLAIN the data usage!!
+why 240???
+
+
+story!!
+
+
+add there why it's in 3rd normal form
+
+
+DEFENSE
+how to add a client
+and how they pay
+down to backup and restore
+online?? with wifi and local
+
+
+
+GIVEN A CASE FIND WHERE LAST STATUS
+
+
+WHERE TO PUT PENALTY???
+
+DATA DAYS LATE
+
+
+INSTANCES:
+PREPAID
+PAID BUT KULANG
+SKIPPED OVER
+

@@ -1,0 +1,416 @@
+/* GENERAL CSS or for CSS not concerning just one page */
+
+body{ /* for the body in general */
+	padding-top: 4%;
+	padding-bottom: 4%;
+	padding-left: 8%;
+	padding-right: 8%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#money{ /* for all amounts */
+	text-align: right;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* LAYOUT.PHP */
+
+.navbar .nav > li > a{ /* for the navbar options */
+	color: gray;
+	position: relative;
+  	top: 48px;
+}
+
+.navbar-brand{ /*for logo*/
+	padding: 0;
+	height: auto;
+	position: relative;
+}
+
+.navbar .nav>.active>a, .navbar .nav>.active>a:hover, .navbar .nav>.active>a:focus { /*to modify active link*/
+  color:#E8AF3F;
+  background-color: transparent;
+}
+
+.navbar-right .dropdown-menu {
+    right: 0;
+    left: 0;
+    top: 90px;
+}
+
+.dropdown{
+    position:relative;
+
+}
+
+#logo{ /* for the logo in the navbar*/
+	display: inline-block;
+	max-width: 400px; 
+	max-height: 100px; 
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* MAIN.PHP */
+
+.navbar{ /* for the navbar */
+	background-color: #FFFFFF;
+	border: 0;
+	border-bottom: 2px solid #929292;
+	position: absolute;
+	width: 84%;
+	height: auto;
+	z-index: 99999!important;
+	color: #929292;
+}
+
+#calendar{
+	max-width: 47%;
+	padding-left: 2%;
+	float:left;
+}
+
+#tables{ /* current payments list */
+	width: 47%;
+	padding-right: 2%;
+	float: right;
+}
+
+#side_by_side{ /* both tables */
+	margin-top: 14%;
+	width: 100%;
+	
+	height:500px;
+}
+
+#calendar_Div{
+
+}
+
+
+/*/* pending payments 
+#for_2ndtable{ 
+	padding-top: 3%;
+	width: 50%;
+	float: right;
+}*/
+
+#for_Date{ /* date column */
+	width: 30%;
+}
+
+.table{ /* for all tables */
+	font-size: 12px;
+}
+
+#mainthead{ /* date, pending payments header */
+	font-size: 24px;
+	color:#E8AF3F;
+	width: 100%;
+}
+
+#subthead{ /* client, company, etc header */
+	font-size: 14px;
+}
+
+.searchsearch{
+	position: relative;
+	z-index: 100!important;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* ADDCLIENT.PHP */
+
+h1{
+	color:#E8AF3F;
+	padding-top: 12%;
+	margin-left: 25%;
+}
+
+#form_Addclient{ /* add client form */
+	padding-top: 2%;
+	width: 60%;
+	margin-left: 25%;
+}
+
+.form-control-inline { /* name of rep and co-maker fields */
+    min-width: 0;
+    width: auto;
+    display: inline-block;
+}
+
+.form-control-inline2{ /* name of dropdown (class and status) fields */
+    width: 100%;
+    display: inline-block;
+}
+
+#add_button{ /* add button */
+	background-color: #E8AF3F;
+	color: white;
+	width: 30%;
+	margin-top: 1%;
+}
+
+#cancel{ /* cancel button */
+	background-color: #929292;
+	color: white;
+	width: 30%;
+	margin-top: .75%;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* ADDCASE.PHP */
+
+h2{
+	color:#F9BE4A;
+	margin-left: 25%;
+}
+
+#form_Addcase{ /* add case form */
+	padding-top: 2%;
+	width: 60%;
+	margin-left: 25%;
+}
+
+#picker_case{
+	width: auto;
+	margin-bottom: 7%;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* LOGIN.PHP */
+
+#form_login{
+	margin-top: 18%;
+	width: auto;
+	margin-left: 37%;
+	margin-right: 37%;
+	text-align: left;
+	padding: 20px;
+	border-top: 1px solid #BEC4C7;
+	border-bottom: 1px solid #BEC4C7;
+}
+
+#login_label{
+	border-bottom: 2px solid #E8AF3F;
+	margin-bottom: 4%;
+	padding-top: 6%;
+}
+
+#login_btn{ /* div of the button */
+	margin-top: 13%;
+	width: auto;
+	margin-right: 50%;
+}
+
+#login{ /* button itself */
+	background-color: #F9BE4A;
+	width: auto;
+}
+
+#login_img{
+	font-size: 38px;
+	color: #929292;
+	text-align: center;
+	margin-right: 50%;
+	margin-bottom: 8%;
+	margin-top: 5%;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* VIEW_ALL.PHP */
+
+#with_searchbar{ /* div ng h1 and search bar */
+	width: 100%;
+	margin-bottom: 20%;
+}
+
+#h1_view{ /* for view all label */
+	color:#E8AF3F;
+	margin-left: .5%;
+	margin-top: 0;
+	float: left;
+	padding-top: 15%;
+}
+
+#for_Search{
+	float: right;
+	width: 200px; 
+	height: 20px; 
+	padding-top: 80%;
+}
+
+#search_glyph{
+	height: 19px;
+}
+
+#view_all_table
+{
+	width: 100%;
+	padding-top: 1%;
+}
+
+#colored_head{
+	background-color: #F9BE4A;
+	height: 20%;
+	padding: 2%;
+}
+
+#client_head{ /* client column */
+	width: 18%;
+	text-align: center;
+}
+
+#icons_head{ /* icons column */
+	width: 8%;
+	text-align: center;
+}
+
+#maturity_head, #release_head, #status_head{ /* release, maturity, status columns */
+	width: 15%;
+	text-align: center;
+}
+
+#loan_head, #amount_head{ /* loan and amount bal columns */
+	width: 12%;
+	text-align: center;
+}
+
+#center_column{ /* to center align the column contents */
+	text-align: center;
+}
+
+#icons{ /* glyphicons */
+	padding-right: 3px;
+	display: inline;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 3px;
+	margin-left: 3px;
+	color: #BEC4C7;
+}
+
+#logo_column{ /* to right align the glyphicons */
+	text-align: right;
+}
+
+.container{ /* to adjust row height */
+	margin-top: 2px;
+	height: 38px;
+	margin-bottom: 2px;
+}
+
+.pagination{
+	float: right;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+  border: 3px solid white;
+  background-color: #BEC4C7;
+  color: white;
+}
+
+.pagination > li.active > a{
+	border: 3px solid white;
+	background-color: #F9BE4A;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* SEARCH.PHP */
+
+#h2_search{
+	color: #F9BE4A;
+	margin-left: .5%;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* EDITCASE.PHP */
+
+#for_notes{
+	width: 49%;
+	margin-left: 24%;
+	margin-top: 3%;
+	margin-bottom: 2%;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* INPUT.PHP */
+
+#input_class #class{ /* for payment type dropdown */
+	width: 100%;
+}
+
+#h1_input{
+	color: #E8AF3F;
+	margin-left: 5%;
+}
+
+#h2_input{
+	color: #F9BE4A;
+	margin-left: 5%;
+}
+
+#div_input{ /* div of table and form */
+	padding-top: 2%;
+	width: 100%;
+}
+
+#form_input{
+	width: 43.5%;
+	float: right;
+	margin-left: 0%;
+	margin-right: 5%;
+	margin-top: 8%;
+}
+
+#input_table{
+	width: 41%;
+	float: left;
+	margin-left: 5%;
+	height: auto;
+	font-size: 9px;
+	margin-bottom: 2%;
+}
+
+#input_thead{ /* expected payment header */
+	font-size: 15px;
+	font-weight: bold;
+	width: 100%;
+}
+
+.total{
+	font-weight: bolder;
+}
+
+#input_title{
+	background-color: #E6E6E6;
+}
+
+/* -------------------------------------------------------------------------------------------*/
+
+/* COLLECTION.PHP */
+
+#form_report{
+	padding-top: 3.5%;
+	padding-bottom: 2%;
+	width: 60%;
+	margin-left: 17vw;
+
+}
+
+#h1_report{
+	margin-left: 17vw;
+}
+
+#report_buttons{
+	margin-top: 6.5%;
+}

@@ -1,0 +1,18 @@
+SELECT clients.representative_last_name, clients.representative_first_name,clients.company_name
+FROM expected, clients
+WHERE expected.expected_collection_date='2016-04-23'
+AND expected.client_id = clients.client_id;
+
+<script type = "text/javascript">
+  function isEmpty() {//checks if all fields are complete
+      if (document.getElementById("lastr").value == "" || document.getElementById("firstr").value == "" ||document.getElementById("lastc").value == "" ||
+          document.getElementById("firstc").value == "" || document.getElementById("company").value == "" || document.getElementById("tel").value == "" || 
+          document.getElementById("email").value == "" || document.getElementById("oadd").value == ""){
+          alert("Please fill out all fields.");
+          if(document.getElementById("lastr").value == ""){
+            lastr.style.background="red";
+          }
+          return false;
+      }
+  }
+</script>
