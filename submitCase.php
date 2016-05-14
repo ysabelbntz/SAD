@@ -82,6 +82,6 @@ $(document).ready(function(){
 		}		
 	}
 	else{
-		echo "fuq";
+		echo $conn->error;
 	}
 ?>

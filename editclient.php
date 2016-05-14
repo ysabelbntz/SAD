@@ -3,23 +3,6 @@
 include("layout.php"); //this includes layout.php which contains the navbar and footer
 include_once("database.php");
 $sql = 'SELECT client_id, representative_last_name, representative_first_name  FROM clients WHERE client_id like "'.$_GET['value'].'"';
-
-if(isset($_POST['add_button'])){
-  $company=$_POST['company'];
-  $oadd=$_POST['oadd'];
-  $tel=$_POST['tel'];
-  $email=$_POST['email'];
-  $status=$_POST['status'];
-  $notes=$_POST['notes'];
-  $sql1="UPDATE clients SET notes='$notes',company_name='$company'";
-  $result1 = $conn->query($sql1);
-  if(!$result1){
-      echo $conn->error;
-  }
-  else{
-    echo('<meta http-equiv="refresh" content="0;URL=main.php"/>');
-  }   
-}
 ?>
 
 <h1>EDIT CLIENT</h1>
@@ -35,7 +18,7 @@ $result = mysqli_query($conn, $sql);
 echo('
 </h2>
 <div id="form_Addclient">
-<form class="form-horizontal" action="editclient.php" role="form" method="post">
+<form class="form-horizontal" action="submitEdit1.php?value='.$row['client_id'].'" role="form" method="post">
 
 <!-- EDIT THESE PARTS FOR DISABLING EDITS: I ADDED READONLY BUT IT WON\'T WORK FOR SELECT --> 
  <!-- <div class="form-group">

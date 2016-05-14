@@ -31,7 +31,7 @@
 			$sql="INSERT INTO payment(client_id,case_id,account_id,expected_id,turn_date,type_of_payment,check_number,turn_amount,principal_paid,
 				interest_paid,penalty,status,notes)
 				VALUES ('$id1','cases.case_id','$loan','$dor','$dom','$weeks','$rate','$notes','$status','0.00','0.00')";
-
+				//madami kulang
 			$result = $conn->query($sql);
 
 			if(!$result){
@@ -39,7 +39,7 @@
 			}
 			else{
 				//echo $dom;
-				echo('<meta http-equiv="refresh" content="0;URL=main.php"/>');
+				echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?url_id='.$id1.'"/>');
 			}		
 		}
 	}

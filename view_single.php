@@ -93,9 +93,9 @@ include ('database.php');
     		}
         }
     ?>
-		<a href="input.php"><i class="glyphicon glyphicon-plus" id="icons"></i></a>
-		<a href="editclient.php"><i class="glyphicon glyphicon-pencil" id="icons"></i></a>
-		<a href="addcase.php"><i class="glyphicon glyphicon-level-up" id="icons"></i></a>
+		<a href="input.php?client=<?php echo $local_id?>&case=<?php echo $row['case_id']?>"><i class="glyphicon glyphicon-plus" id="icons"></i></a>
+		<a href="editclient.php?value=<?php echo $local_id?>"><i class="glyphicon glyphicon-pencil" id="icons"></i></a>
+		<a href="addcase.php?value=<?php echo $local_id?>" id="icons"><i class="glyphicon glyphicon-level-up" id="icons"></i></a>
 		</p>
 	</div>
 <br>
