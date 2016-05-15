@@ -29,7 +29,7 @@ $display_date = date("M d, Y");
 
 $sql = "SELECT clients.representative_last_name, clients.representative_first_name,clients.company_name
 FROM expected, clients
-WHERE expected.expected_collection_date='".$curr_date."'
+WHERE expected.expected_due_date='".$curr_date."'
 AND expected.client_id = clients.client_id;";
 
 $result = $conn->query($sql);
@@ -59,7 +59,7 @@ else
 {
 ?>
 <tr id="subthead">
-			<th colspan="2">No payments due</th>
+			<th colspan="2">No payments due this day</th>
 		</tr>
 	</thead>
 <?php
@@ -124,22 +124,70 @@ else
 </div>
 	</div>
 
-	<?php
-	$aaaa = "2016-2-1";
-	?>
 <script>
 
- $(document).ready(function() {
 
+
+$(document).ready(function() {
+ 	var date = new Date();
+ 	var d = date.getDate();
+ 	var m = date.getMonth();
+ 	var y = date.getFullYear();
     // page is now ready, initialize the calendar...
 
     $('#calendar').fullCalendar({
-        // put your options and callbacks here
-        dayClick: function(){
-        	
-        	alert("\'<?php print $aaaa; ?>\'");
-        }
-    });
 
+    	editable: false,
+    	weekMode: 'liquid',
+    	contentHeight:500,
+<?php
+
+$sqlcal = "SELECT clients.representative_last_name, clients.representative_first_name,expected.expected_due_date
+FROM expected, clients
+WHERE expected.client_id = clients.client_id;";
+
+$resultcal = $conn->query($sqlcal);
+
+
+$countercal = 0;
+
+if ($resultcal->num_rows > 0)
+{
+?>
+events: [
+
+<?php
+while($rowcal=$resultcal->fetch_array())
+	{
+		if ($countercal == $resultcal->num_rows)
+		{
+?>
+	    	{
+	    		title:<?php echo "'".$rowcal[0].", ".$rowcal[1]?>,
+	    		start: <?php echo "'".$rowcal[2]."'"?>
+	    	}
+	    <?php
+			
+		}
+		else
+		{
+		?>
+			{
+	    		title:<?php echo "'".$rowcal[0].", ".$rowcal[1]."'"?>,
+	    		start: <?php echo "'".$rowcal[2]."'"?>
+	    	},
+		<?php
+		}
+		$countercal++;
+	}
+	?>
+],
+<?php
+}
+		?>
+	
+    
+    eventColor: 'gray'
+    });
 });
  </script>
