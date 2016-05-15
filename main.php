@@ -1,7 +1,6 @@
 <?php
 include("database.php");
 include("layout.php");
-include("authorization.php"); 
 
 $curr_date = date("Y/m/d");
 

@@ -11,7 +11,7 @@ function authorized()
   $result = $conn->query($sql);
   if($_SESSION['key'] != session_id() || mysql_num_rows($result) != 1)
   {
-	return false;
+	 return false;
   }
   else
   {
