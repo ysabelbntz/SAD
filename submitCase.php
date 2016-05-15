@@ -67,7 +67,7 @@
 				$i++;
 			}
 
-			echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?url_id='.$id1.'"/>');
+			echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?client='.$id1.'"/>');
 			
 		}		
 	}

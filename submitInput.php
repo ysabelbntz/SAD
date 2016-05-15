@@ -11,6 +11,8 @@
 		$interest=$_POST['interest'];
 		$penalty=$_POST['penalty'];
 
+		$userid=$_SESSION['id'];
+
 		$sql1='SELECT * FROM clients, cases, expected WHERE clients.client_id like "'.$_GET['client'].'" AND cases.case_id like "'.$_GET['case'].'" AND clients.client_id=cases.client_id AND expected.case_id=cases.case_id AND expected.status="Unpaid" AND cases.status="Active"';	
 		$result1 = $conn->query($sql1);
 
@@ -47,7 +49,7 @@
             }
 			$sql4 = "INSERT INTO payment(client_id,case_id,account_id,expected_id,turn_date,type_of_payment,check_number,turn_amount,principal_paid,
 				interest_paid,penalty,status,notes)
-				VALUES ('$clid','$cid','1','$eid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', 'Valid', '$notes')";
+				VALUES ('$clid','$cid','$userid','$eid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', 'Valid', '$notes')";
 				//madami kulang
 			$result4 = $conn->query($sql4);
 

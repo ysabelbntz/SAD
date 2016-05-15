@@ -11,7 +11,7 @@ $curr_date = date("Y/m/d");
 
 <div id="side_by_side">
 	
-		<div id='calendar'>
+		<div id="calendar">
 		</div>
 		<div id="tables">
 			<div class="table-responsive" id="for_table">
@@ -23,7 +23,7 @@ $curr_date = date("Y/m/d");
 
 $display_date = date("M d, Y");
 ?>
-		<th><?php print $display_date?></th>
+		<th colspan="2"><?php print $display_date?></th>
 				    </tr>
 <?php
 
