@@ -137,7 +137,7 @@ include ('database.php');
 		if (isset($_GET['client'])){
 		  	$local_id=$_GET['client'];
 
-            $sql3 = "SELECT DATE_FORMAT(c.date_of_release, '%b-%d-%y') AS dr, c.loan_amount, c.weekly_interest_rate, c.payment_period, (c.loan_amount*c.weekly_interest_rate*0.01) intBal, (c.loan_amount+(c.loan_amount*c.weekly_interest_rate*0.01)) totalBal FROM cases c WHERE c.client_id=$local_id;";
+            $sql3 = "SELECT DATE_FORMAT(c.date_of_release, '%b-%d-%y') AS dr, c.loan_amount, c.weekly_interest_rate, c.payment_period, (c.loan_amount*c.weekly_interest_rate*0.01*c.payment_period) intBal, (c.loan_amount+(c.loan_amount*c.weekly_interest_rate*0.01*c.payment_period)) totalBal FROM cases c WHERE c.client_id=$local_id;";
             $result3 = mysqli_query($conn, $sql3);;
 
             if (mysqli_num_rows($result3) > 0) {
