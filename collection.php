@@ -28,10 +28,10 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 	  <div class="form-group">
 	    <label class="control-label col-sm-3" for="class">Classification </label>
 	    <div class="col-sm-4" id="input_class">
-	      <select class="form-control form-control-inline" id="class">
-	      <option>Micro</option>
-	      <option>SME</option>
-	      <option>Both</option>
+	      <select class="form-control form-control-inline" id="class" name="class">
+	      <option value="Micro">Micro</option>
+	      <option value="SME">SME</option>
+	      <option value="Micro and SME">Both</option>
 	    </select>
 	    </div>
 	  </div>
