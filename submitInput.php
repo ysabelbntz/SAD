@@ -15,6 +15,7 @@
 		$result1 = $conn->query($sql1);
 
 		$turnamt=$principal+$interest+$penalty;
+		$tamt=$turnamt;//used in checking which records can be considered as paid
 
 		$Ymd = explode("/", $turndate);
 		$m = $Ymd[0];
@@ -32,16 +33,16 @@
                 while($row = mysqli_fetch_assoc($result2)) {
                 	$paid = $row['status'];
                 	$total_due = $row['total_due'];
-                	if($paid=='Unpaid' && $turnamt<=0){
-	                	$turnamt -= $total_due;
-	                	$paid = 'Paid';
-	                	$sql3 = "UPDATE expected SET status = '$paid' WHERE case_id = '$cid'";
+                	if($paid=='Unpaid' && $turnamt > 0){//checks if record is unpaid and only accepts if turnamount is more than 0
+	                	$turnamt -= $total_due;//deducts the due from the turnamount
+	                	$paid = 'Paid';//updates status
+	                	$sql3 = "UPDATE expected SET status = '$paid' WHERE case_id = '$cid'";//updates status
 	                	$result3 = $conn->query($sql3);
 	                	if(!$result3){
         					echo $conn->error;
     					}
                 	}
-                	$eid=$row['expected_id'] ;         	
+                	$eid = $row['expected_id'];         	
                 }
             }
 			$sql4 = "INSERT INTO payment(client_id,case_id,account_id,expected_id,turn_date,type_of_payment,check_number,turn_amount,principal_paid,
@@ -55,7 +56,7 @@
 			}
 			else{
 				//echo $dom;
-				echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?url_id='.$id1.'"/>');
+				echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?client='.$clid.'"/>');
 			}		
 		}
 	}
