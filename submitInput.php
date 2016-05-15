@@ -4,6 +4,7 @@
 	if(isset($_POST['add_button'])) {
 		$clid=$_GET['client'];
 		$cid=$_GET['case'];
+		$userid=$_SESSION['id'];
 		$turndate=$_POST['turndate'];
 		$classtype=$_POST['classtype'];
 		$check=$_POST['check'];
@@ -33,7 +34,7 @@
                 while($row = mysqli_fetch_assoc($result2)) {
                 	$paid = $row['status'];
                 	$total_due = $row['total_due'];
-                	if($paid=='Unpaid' && $turnamt > 0){//checks if record is unpaid and only accepts if turnamount is more than 0
+                	if($paid=='Unpaid' && $turnamt > $total_due){//checks if record is unpaid and only accepts if turnamount is more than 0
 	                	$turnamt -= $total_due;//deducts the due from the turnamount
 	                	$paid = 'Paid';//updates status
 	                	$sql3 = "UPDATE expected SET status = '$paid' WHERE case_id = '$cid'";//updates status
@@ -41,13 +42,14 @@
 	                	if(!$result3){
         					echo $conn->error;
     					}
+    					$eid = $row['expected_id']; 
                 	}
-                	$eid = $row['expected_id'];         	
+                	        	
                 }
             }
 			$sql4 = "INSERT INTO payment(client_id,case_id,account_id,expected_id,turn_date,type_of_payment,check_number,turn_amount,principal_paid,
 				interest_paid,penalty,status,notes)
-				VALUES ('$clid','$cid','1','$eid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', 'Valid', '$notes')";
+				VALUES ('$clid','$cid','$userid','$eid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', 'Valid', '$notes')";
 				//madami kulang
 			$result4 = $conn->query($sql4);
 
