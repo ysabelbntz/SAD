@@ -20,6 +20,18 @@
 		$turnamt=$principal+$interest+$penalty;
 		$tamt=$turnamt;//used in checking which records can be considered as paid
 
+		if (mysqli_num_rows($result1) > 0) {
+            while($row = mysqli_fetch_assoc($result1)) {
+               	$atb = $row['actual_total_balance'];
+                $apb = $row['actual_principal_balance'];
+                $aib = $row['actual_interest_balance'];
+            }
+        }
+
+        $apb -= $principal;
+        $aib -= $interest;
+        $atb = $apb+$aib;
+
 		$Ymd = explode("/", $turndate);
 		$m = $Ymd[0];
 		$d = $Ymd[1];
@@ -55,7 +67,10 @@
 				//madami kulang
 			$result4 = $conn->query($sql4);
 
-			if(!$result4){
+			$sql5 = "UPDATE cases SET actual_total_balance = '$atb', actual_principal_balance = '$apb', actual_interest_balance = '$aib' WHERE case_id = '$cid'";//updates status
+	        $result5 = $conn->query($sql5);
+
+			if(!$result4||!$result5){
 				echo $conn->error;
 			}
 			else{
