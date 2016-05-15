@@ -80,7 +80,7 @@ $result = mysqli_query($conn, $sql);
     </div>
     </div>
 
-  <form class="form-horizontal" action="submitInput.php?value='.$row['cases.case_id'].'" method="post" role="form" id="form_input">
+  <form class="form-horizontal" action="submitInput.php?client='.$clid.'&case='.$cid.'" method="post" role="form" id="form_input">
     <div class="form-group">
       <label class="control-label col-sm-offset-2 col-sm-4" for="turn">Turn Date </label>
       <div class="col-sm-6">
