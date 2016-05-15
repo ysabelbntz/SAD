@@ -16,7 +16,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 		</form>
 	</div>
 	<div class="table-responsive" id="view_all_table">
-        <table class="table table-striped">
+        <table class="table table-striped table-hover">
           <thead id="colored_head">
             <tr>
                 <th id="client_head">NAME</th>

@@ -133,6 +133,11 @@ echo('
 }
 }
 ?>
+	  <div class="footer">
+ 
+       Developed by SYNC Consulting Group | 2016
+ 
+      </div>
 <!-- for whoever is logged in --> 
 
     <!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->
@@ -145,6 +150,7 @@ echo('
 
 	<script src="js/moment.min.js"></script>
 	<script src="fullcalendar/fullcalendar.js"></script>
+
 
 
 

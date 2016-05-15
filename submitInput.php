@@ -12,6 +12,8 @@
 		$interest=$_POST['interest'];
 		$penalty=$_POST['penalty'];
 
+		$userid=$_SESSION['id'];
+
 		$sql1='SELECT * FROM clients, cases, expected WHERE clients.client_id like "'.$_GET['client'].'" AND cases.case_id like "'.$_GET['case'].'" AND clients.client_id=cases.client_id AND expected.case_id=cases.case_id AND expected.status="Unpaid" AND cases.status="Active"';	
 		$result1 = $conn->query($sql1);
 
