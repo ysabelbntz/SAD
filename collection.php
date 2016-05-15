@@ -5,7 +5,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 ?> 
 	<h1 id="h1_report">COLLECTIONS REPORT</h1>
 	<div id="form_report">
-	<form class="form-horizontal" role="form" method="post">
+	<form class="form-horizontal" role="form" action="collectionpdf.php" method="post">
 	  <div class="form-group">
 		    <label class="control-label col-sm-3" for="period">Period </label>
 		    <div class="col-sm-4">
@@ -37,8 +37,8 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 	  </div>
 	  <div class="form-group" id="report_buttons">
 	    <div class="col-sm-offset-3 col-sm-8">
-	    	<a href="collectionpdf.php" class="btn btn-default" id="add_button">Generate</a>
-	    	<a href="main.php" class="btn btn-default" id="add_button">Cancel</a>
+	    	<button type="submit" class="btn btn-default" id="add_button" name="add_button">Generate</a>
+	    	<button type="submit" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/main.php\';">Cancel </button>
 	    </div>
 	  </div>
 	</form>

@@ -1,10 +1,3 @@
-<!-- FILTER ACCDG TO CLASSIFICATION -->
-<!-- SHOW DATES/DURATION -->
-<!-- FILTER ACCDG TO DATES -->
-<!-- FORMAT CURRENCY -->
-<!-- SHOW ACTUAL BALANCE -->
-<!-- CSS HUHU -->
-
 <?php
 
 include ('database.php');
@@ -17,12 +10,12 @@ $pdf-> Cell(0,10,"COLLECTIONS REPORT",1,1,"C");
 $pdf-> Cell(0,10,"From",1,1,"C");
 
 
-
-		// $date1=$_GET['dateStart'];
-		// $date2=$_GET['dateEnd'];
-
-		// $pdf-> Cell(38,10,$date1,1,0,"C");
-		// $pdf-> Cell(38,10,$date2,1,1,"C");
+		if(isset($_POST['add_button'])){
+		$date1=$_POST['period_start'];
+		$date2=$_POST['period_end'];
+		}
+		$pdf-> Cell(38,10,$date1,1,0,"C");
+		$pdf-> Cell(38,10,$date2,1,1,"C");
 
 
 
