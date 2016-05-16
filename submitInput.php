@@ -48,8 +48,8 @@
                 while($row = mysqli_fetch_assoc($result2)) {
                 	$paid = $row['status'];
                 	$total_due = $row['total_due'];
-                	if($paid=='Unpaid' && $tamt > $total_due){//checks if record is unpaid and only accepts if turnamount is more than 0
-	                	$tamt -= $total_due;//deducts the due from the turnamount
+                	if($paid=='Unpaid' && $turnamt > $total_due){//checks if record is unpaid and only accepts if turnamount is more than 0
+	                	$turnamt -= $total_due;//deducts the due from the turnamount
 	                	$paid = 'Paid';//updates status
 	                	$sql3 = "UPDATE expected SET status = '$paid' WHERE case_id = '$cid'";//updates status
 	                	$result3 = $conn->query($sql3);

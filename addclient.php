@@ -94,7 +94,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
   <div class="form-group"> 
     <div class="col-sm-offset-4 col-sm-7">
       <input type="submit" value="Add Client" class="btn btn-default" id="add_button" name="add_button"/>
-      <button type="cancel" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/addclient.php\';">Cancel </button>
+      <button type="cancel" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/main.php\';">Cancel </button>
     </div>
   </div>
 </form>

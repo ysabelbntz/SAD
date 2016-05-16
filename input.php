@@ -1,3 +1,13 @@
+<script type="text/javascript">
+function class_type(val){
+ var element=document.getElementById('class');
+ if(val=='check')
+   element.style.display='block';
+ else  
+   element.style.display='none';
+}
+</script> 
+
 <?php 
 
 include("layout.php"); //this includes layout.php which contains the navbar and footer
@@ -6,6 +16,7 @@ $clid = $_GET['client'];
 $cid = $_GET['case'];
 $sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name, cases.case_id, cases.loan_amount, cases.actual_interest_balance  FROM cases, clients WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND clients.client_id=cases.client_id';
 ?>
+
 <h1 id="h1_input">INPUT PAYMENT</h1>
 <h2 id="h2_input">
 <?php 
@@ -92,22 +103,28 @@ $result = mysqli_query($conn, $sql);
        </div> 
       </div>
     </div>  
+');
+?>
     <div class="form-group">
       <label class="control-label col-sm-offset-2 col-sm-4" for="class">Payment Type</label>
       <div class="col-sm-6" id="input_class"> 
-        <select class="form-control form-control-inline" id="class" name="classtype">
-        <option>Cash</option>
-        <option>Check</option>
-        <option>Collateral</option>
+        <select class="form-control form-control-inline" id="class" name="classtype" onchange='class_type(this.value);'>
+        <option value="cash">Cash</option>
+        <option value="check">Check</option>
+        <option value="collateral">Collateral</option>
       </select>
       </div>
     </div>
-    <div class="form-group">
+
+    <div class="form-group" style='display:block;'>
       <label class="control-label col-sm-offset-2 col-sm-4" for="check">Check Number </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" id="check" name="check" placeholder="Check Number" readonly>
+        <input type="text" class="form-control" id="check" name="check" placeholder="Check Number">
       </div>
     </div>
+
+    <?php
+    echo ('
     <div class="form-group">
       <label class="control-label col-sm-offset-2 col-sm-4" for="principal">Principal Paid </label>
       <div class="col-sm-6">
@@ -128,8 +145,8 @@ $result = mysqli_query($conn, $sql);
     </div>
     <div class="form-group"> 
       <div class="col-sm-offset-6 col-sm-6">
-        <button type="submit" class="btn btn-default" name="add_button" id="add_button">Input</button>
-        <button type="submit" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/addclient.php\';">Cancel </button>
+        <input type="submit" value="Input" class="btn btn-default" id="add_button" name="add_button"/>
+        <a href="input.php" class="btn btn-default" id="cancel">Cancel </a>
       </div>
     </div>
   </form>
