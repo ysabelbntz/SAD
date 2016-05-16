@@ -1,7 +1,34 @@
-h1{
-	color:#E8AF3F;
-}
+
+
 
 body{ /* for the body in general */
 	font-family: 'Montserrat', sans-serif;
+}
+
+h1{
+	color:#E8AF3F;
+	font-weight: bolder;
+}
+
+.table{ /* for all tables */
+	font-size: 12px;
+}
+
+#mainthead{ /* date, pending payments header */
+	font-size: 14px;
+	color:black;
+	background-color: #E8AF3F;
+	text-align: center;
+}
+
+#subthead{ /* client, company, etc header */
+	font-size: 14px;
+}
+.title{
+	width:100%;
+}
+
+#bottom{
+	text-align:right;
+	background-color: #E8AF3F;
 }
