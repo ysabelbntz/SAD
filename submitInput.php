@@ -48,33 +48,39 @@
                 while($row = mysqli_fetch_assoc($result2)) {
                 	$paid = $row['status'];
                 	$total_due = $row['total_due'];
-                	if($paid=='Unpaid' && $turnamt > $total_due){//checks if record is unpaid and only accepts if turnamount is more than 0
-	                	$turnamt -= $total_due;//deducts the due from the turnamount
-	                	$paid = 'Paid';//updates status
-	                	$sql3 = "UPDATE expected SET status = '$paid' WHERE case_id = '$cid'";//updates status
+                	$eid = $row['expected_id']; 
+                	echo $paid."<br/>";
+                	echo $total_due."<br/>";
+                	echo $tamt."<br/>";
+                	if(($paid == "Unpaid") AND ($tamt >= $total_due)){//checks if record is unpaid and only accepts if turnamount is more than 0
+	                	$tamt = $tamt - $total_due;//deducts the due from the turnamount
+	                	$paid = "Paid";//updates status
+	                	$paid2 = $paid;
+	                	echo $paid2."<br/>";
+	                	$sql3 = "UPDATE expected SET status = '$paid' WHERE case_id = '".$cid."' AND expected_id = '".$eid."'";//updates status
 	                	$result3 = $conn->query($sql3);
 	                	if(!$result3){
         					echo $conn->error;
     					}
-    					$eid = $row['expected_id']; 
+    					$finaleid = $eid;
                 	}
                 	        	
                 }
             }
 			$sql4 = "INSERT INTO payment(client_id,case_id,account_id,expected_id,turn_date,type_of_payment,check_number,turn_amount,principal_paid,
 				interest_paid,penalty,status,notes)
-				VALUES ('$clid','$cid','$userid','$eid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', 'Valid', '$notes')";
+				VALUES ('$clid','$cid','$userid','$finaleid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', 'Valid', 'hi')";
 				//madami kulang
 			$result4 = $conn->query($sql4);
 
-			$sql5 = "UPDATE cases SET actual_total_balance = '$atb', actual_principal_balance = '$apb', actual_interest_balance = '$aib' WHERE case_id = '$cid'";//updates status
+			$sql5 = "UPDATE cases SET actual_total_balance = '".$atb."', actual_principal_balance = '".$apb."', actual_interest_balance = '".$aib."' WHERE case_id = '".$cid."'";//updates status
 	        $result5 = $conn->query($sql5);
 
-	        $sql6 = "SELECT actual_total_balance FROM cases WHERE case_id=".$cid;
+	        $sql6 = "SELECT actual_total_balance FROM cases WHERE case_id=".$cid."";
 	        $result6 = mysql_query($conn,$sql6);
 	        $rowG = mysql_fetch_assoc($result6);
 	        if($rowG['actual_total_balance'] <= 0){
-	        	$sql7 = "UPDATE cases SET status='Closed' WHERE case_id=".$cid;
+	        	$sql7 = "UPDATE cases SET status='Closed' WHERE case_id=".$cid."";
 	        	$result7 = mysql_query($conn,$sql7);
 	        }
 
@@ -84,7 +90,7 @@
 			}
 			else{
 				//echo $dom;
-				echo('<meta http-equiv="refresh" content="0;URL=view_single.php?client='.$clid.'"/>');
+				//echo('<meta http-equiv="refresh" content="0;URL=view_single.php?client='.$clid.'"/>');
 			}		
 		}
 	}

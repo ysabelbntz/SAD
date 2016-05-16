@@ -19,7 +19,22 @@ $sql = 'SELECT clients.client_id, clients.representative_last_name, clients.repr
 
 <h1 id="h1_input">INPUT PAYMENT</h1>
 <h2 id="h2_input">
-<?php 
+<?php
+$weeks=0;
+$penalty=25;
+$today = date("Y-m-d");
+$sql2='SELECT expected_due_date, status, case_id FROM expected WHERE case_id='.$cid.'';
+$result2 = $conn->query($sql2);
+ if (mysqli_num_rows($result2) > 0) {
+    while($row = mysqli_fetch_assoc($result2)) {
+      $expected_due_date = $row['expected_due_date'];
+      $paid = $row['status'];
+      if(($paid == "Unpaid") AND ($today > $expected_due_date)){//checks if record is unpaid and only accepts if turnamount is more than 0
+        $weeks++;
+      }             
+    }
+  }
+//$days_between = ceil(abs($end - $start) / 86400);
 $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) 
   {
@@ -42,49 +57,49 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr>
             <td>Principal (Per Week)</td>
-            <td id="money">'.$row['loan_amount'].'</td>
+            <td id="money">'.number_format($row['loan_amount'],2).'</td>
           </tr>
           <tr>
             <td>Weeks Late</td>
-            <td id="money">1</td>
+            <td id="money">'.$weeks.'</td>
           </tr>
           <tr>
             <td>Total Interest</td>
-            <td class="total" id="money">750.00</td>
+            <td class="total" id="money">'.number_format(($row['loan_amount']*$weeks),2).'</td>
           </tr>
           <tr>
             <td colspan="2" id="input_title">Interest</td>
           </tr>
           <tr>
             <td>Interest (Per Week)</td>
-            <td id="money">'.$row['actual_interest_balance'].'</td>
+            <td id="money">'.number_format($row['actual_interest_balance'],2).'</td>
           </tr>
           <tr>
             <td>Weeks Late</td>
-            <td id="money">2</td>
+            <td id="money">'.$weeks.'</td>
           </tr>
           <tr>
             <td>Total Interest</td>
-            <td class="total" id="money">250.00</td>
+            <td class="total" id="money">'.number_format($row['actual_interest_balance']*$weeks,2).'</td>
           </tr>
           <tr>
             <td colspan="2" id="input_title">Penalty</td>
           </tr>
           <tr>
             <td>Penalty (Per Day)</td>
-            <td id="money">25.00</td>
+            <td id="money">'.number_format($penalty,2).'</td>
           </tr>
           <tr>
-            <td>Weeks Late</td>
-            <td id="money">9</td>
+            <td>Days Late</td>
+            <td id="money">'.($weeks*7).'</td>
           </tr>
           <tr>
             <td>Total Interest</td>
-            <td class="total" id="money">225.00</td>
+            <td class="total" id="money">'.number_format(($penalty*$weeks*7),2).'</td>
           </tr>
           <tr class="total" id="input_title">
             <td>Total</td>
-            <td id="money">1,225.00</td>
+            <td id="money">'.number_format((($row['loan_amount']*$weeks)+($row['actual_interest_balance']*$weeks)+($penalty*$weeks*7)),2).'</td>
           </tr>
         </tbody>
       </table>
