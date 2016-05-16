@@ -1,12 +1,10 @@
 <?php
 
-$url = getenv('JAWSDB_URL');
-$dbparts = parse_url($url);
 
-$hostname = $dbparts['host'];
-$username = $dbparts['root'];
-$password = $dbparts['sasabenitez'];
-$database = ltrim($dbparts['mega'],'/');
+$hostname = 'host';
+$username = 'bf9f5127fb32aa';
+$password = 'efcc2b40';
+$database = 'heroku_a9918873932cf93';
 
 $conn = new mysqli ($servername, $username, $password);
 $conn->select_db($database);
