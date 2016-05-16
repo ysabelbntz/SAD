@@ -27,7 +27,7 @@ $result = mysqli_query($conn, $sql);
 	  <div class="form-group"> 
 	    <div class="col-sm-offset-3 col-sm-6">
 	      <button type="submit" class="btn btn-default" id="add_button" name="add_button">Update</button>
-	      <button type="submit" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/main.php\';">Cancel </button>
+	      <a href="editcase.php" class="btn btn-default" id="cancel">Cancel </a>
 	    </div>
 	  </div>
 	</form>

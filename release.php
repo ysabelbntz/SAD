@@ -40,7 +40,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 	  <div class="form-group" id="report_buttons"> 
 	    <div class="col-sm-offset-3 col-sm-8">
 	      	<a href="releasepdf.php" class="btn btn-default" id="add_button">Generate</a>
-	    	<a href="main.php" class="btn btn-default" id="add_button">Cancel</a>
+	    	<a href="release.php" class="btn btn-default" id="add_button">Cancel</a>
 	    </div>
 	  </div>
 	</form>

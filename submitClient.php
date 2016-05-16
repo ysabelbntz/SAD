@@ -36,7 +36,7 @@
 			  {
 			    while($row = mysqli_fetch_assoc($result2)) 
 			    {
-				echo('<meta http-equiv="refresh" content="0;URL=addCase.php?value='.$row['client_id'].'"/>');
+				echo('<meta http-equiv="refresh" content="0;URL=addcase.php?value='.$row['client_id'].'"/>');
 				}
 			}
 			else{

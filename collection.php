@@ -38,7 +38,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 	  <div class="form-group" id="report_buttons">
 	    <div class="col-sm-offset-3 col-sm-8">
 	    	<button type="submit" class="btn btn-default" id="add_button" name="add_button">Generate</button>
-	    	<button type="submit" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/main.php\';">Cancel </button>
+	    	<a href="collection.php" class="btn btn-default" id="cancel">Cancel </a>
 	    </div>
 	  </div>
 	</form>

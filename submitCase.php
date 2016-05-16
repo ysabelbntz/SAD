@@ -78,7 +78,7 @@
 					echo $conn->error;
 				}	
 
-			echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?client='.$id1.'"/>');
+			echo('<meta http-equiv="refresh" content="0;URL=view_single.php?client='.$id1.'"/>');
 			
 		}		
 	   }

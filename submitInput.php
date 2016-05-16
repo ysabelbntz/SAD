@@ -75,7 +75,7 @@
 			}
 			else{
 				//echo $dom;
-				echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?client='.$clid.'"/>');
+				echo('<meta http-equiv="refresh" content="0;URL=view_single.php?client='.$clid.'"/>');
 			}		
 		}
 	}
