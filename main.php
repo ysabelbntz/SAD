@@ -1,15 +1,17 @@
 <?php
 include("database.php");
 include("layout.php");
+include("authorization.php"); 
 
 $curr_date = date("Y/m/d");
+
 ?>
 
 
 
 <div id="side_by_side">
 	
-		<div id="calendar">
+		<div id='calendar'>
 		</div>
 		<div id="tables">
 			<div class="table-responsive" id="for_table">
@@ -21,7 +23,7 @@ $curr_date = date("Y/m/d");
 
 $display_date = date("M d, Y");
 ?>
-		<th colspan="2"><?php print $display_date?></th>
+		<th><?php print $display_date?></th>
 				    </tr>
 <?php
 
@@ -161,7 +163,7 @@ while($rowcal=$resultcal->fetch_array())
 		{
 ?>
 	    	{
-	    		title:<?php echo "'".$rowcal[0].", ".$rowcal[1]?>,
+	    		title:<?php echo "'".$rowcal[0]." ".$rowcal[1]?>,
 	    		start: <?php echo "'".$rowcal[2]."'"?>
 	    	}
 	    <?php
@@ -171,7 +173,7 @@ while($rowcal=$resultcal->fetch_array())
 		{
 		?>
 			{
-	    		title:<?php echo "'".$rowcal[0].", ".$rowcal[1]."'"?>,
+	    		title:<?php echo "'".$rowcal[0]." ".$rowcal[1]."'"?>,
 	    		start: <?php echo "'".$rowcal[2]."'"?>
 	    	},
 		<?php
