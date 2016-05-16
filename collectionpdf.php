@@ -17,15 +17,25 @@ if(isset($_POST['add_button'])){
 
 if ($class=="Micro and SME")
 {
-	$sql4 = "SELECT a.account_id, a.username, cl.client_id, cl.company_name, p.turn_amount, p.penalty, p.turn_date, cl.classification
-	FROM accounts a, clients cl, payment p
-	WHERE a.account_id=p.account_id AND cl.client_id=p.client_id;";
+	$sql4 = "SELECT a.account_id, a.username, cl.client_id, cl.company_name, p.turn_amount, p.penalty, p.turn_date, cl.classification, ca.actual_total_balance
+	FROM accounts a, clients cl, payment p, cases ca
+	WHERE a.account_id=p.account_id
+	AND cl.client_id=p.client_id
+	AND ca.client_id=cl.client_id
+	AND ca.client_id=p.client_id
+	AND p.case_id = ca.case_id
+	;";
 }
 else
 {
-	$sql4 = "SELECT a.account_id, a.username, cl.client_id, cl.company_name, p.turn_amount, p.penalty, p.turn_date, cl.classification
-	FROM accounts a, clients cl, payment p
-	WHERE a.account_id=p.account_id AND cl.client_id=p.client_id AND cl.classification='".$class."';";
+	$sql4 = "SELECT a.account_id, a.username, cl.client_id, cl.company_name, p.turn_amount, p.penalty, p.turn_date, cl.classification, ca.actual_total_balance
+	FROM accounts a, clients cl, payment p, cases ca
+	WHERE a.account_id=p.account_id
+	AND cl.client_id=p.client_id
+	AND ca.client_id=cl.client_id
+	AND ca.client_id=p.client_id
+	AND p.case_id = ca.case_id
+	AND cl.classification='".$class."';";
 }
 
 $result4 = mysqli_query($conn, $sql4);
@@ -74,6 +84,7 @@ if (mysqli_num_rows($result4) > 0)
 				<td style="text-align:right;">'.$row['company_name'].'</td>
 				<td style="text-align:right;">'.$row['turn_amount'].'</td>
 				<td style="text-align:right;">'.$row['penalty'].'</td>
+				<td style="text-align:right;">'.$row['actual_total_balance'].'</td>
 			</tr>';
 
 			$total=$total+$row['turn_amount']+$row['penalty'];
