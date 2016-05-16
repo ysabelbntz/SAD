@@ -17,7 +17,7 @@ if(isset($_POST['add_button'])){
 
 if ($class=="Micro and SME")
 {
-	$sql4 = "SELECT a.account_id, a.username, cl.client_id, cl.company_name, p.turn_amount, p.penalty, p.turn_date, cl.classification, ca.actual_total_balance
+	$sql4 = "SELECT a.last_name, a.first_name, cl.client_id, cl.company_name, p.turn_amount, p.penalty, p.turn_date, cl.classification, ca.actual_total_balance
 	FROM accounts a, clients cl, payment p, cases ca
 	WHERE a.account_id=p.account_id
 	AND cl.client_id=p.client_id
@@ -28,7 +28,7 @@ if ($class=="Micro and SME")
 }
 else
 {
-	$sql4 = "SELECT a.account_id, a.username, cl.client_id, cl.company_name, p.turn_amount, p.penalty, p.turn_date, cl.classification, ca.actual_total_balance
+	$sql4 = "SELECT a.last_name, a.first_name,  cl.client_id, cl.company_name, p.turn_amount, p.penalty, p.turn_date, cl.classification, ca.actual_total_balance
 	FROM accounts a, clients cl, payment p, cases ca
 	WHERE a.account_id=p.account_id
 	AND a.account_id=cl.account_id
@@ -81,7 +81,7 @@ if (mysqli_num_rows($result4) > 0)
   		{
 			$content.='
 	  		<tr>
-	  			<td>'.$row['username'].'</td>
+	  			<td>'.$row['last_name'].', '.$row['first_name'].'</td>
 				<td style="text-align:right;">'.$row['company_name'].'</td>
 				<td style="text-align:right;">'.$row['turn_amount'].'</td>
 				<td style="text-align:right;">'.$row['penalty'].'</td>
