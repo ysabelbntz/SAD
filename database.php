@@ -7,8 +7,8 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"], 1);
 
-$conn = new mysqli ($hostname, $username, $password);
-$conn->select_db($db);
+$conn = new mysqli ($hostname, $username, $password, $db);
+
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
