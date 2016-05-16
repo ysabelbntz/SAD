@@ -7,13 +7,6 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 ?> 
 	<div id="with_searchbar">
 		<h1 id="h1_view">VIEW ALL OFFICERS</h1>
-		<form class="pull-right searchsearch" role="search" action="search.php">
-			<div class="form-group" id="for_Search">
-				<input type="text" class="form-control" required name="searcher" placeholder="Search">
-					<button type="submit" class="btn btn-default" role="button"><i class="glyphicon glyphicon-search" id="search_glyph"></i></button>
-				</div>
-			</div>
-		</form>
 	</div>
 	<div class="table-responsive" id="view_all_table">
         <table class="table table-striped table-hover">

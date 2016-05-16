@@ -2,20 +2,19 @@
 
 include("layout.php"); //this includes layout.php which contains the navbar and footer
 include_once('database.php');
+if(isset($_POST['add_button'])){
 $name=$_POST['searcher'];
-$sql1 = 'SELECT clients.representative_last_name, clients.representative_first_name FROM clients WHERE clients.representative_last_name like "%'.$name.'%"';
-
+}
 ?>
 	<div id="with_searchbar">
 		<?php 
-		$result = mysqli_query($conn, $sql);
-		if(mysqli_num_rows($result) >= 0){
+
 		echo('<h1 id="h1_view">SEARCH RESULTS FOR "'.$name.'"</h1>');
-		}
+		
 		?>
-		<form class="pull-right searchsearch" role="search" action="search.php">
+		<form class="pull-right searchsearch" role="search" action="search.php" method="post">
 			<div class="form-group" id="for_Search">
-				<input type="text" class="form-control" required name="searcher" placeholder="Search">
+				<input type="text" class="form-control" name="searcher" placeholder="Search" required>
 					<button type="submit" class="btn btn-default" role="button"><i class="glyphicon glyphicon-search" id="search_glyph"></i></button>
 			</div>
 		</form>
@@ -36,8 +35,9 @@ $sql1 = 'SELECT clients.representative_last_name, clients.representative_first_n
         <tbody>
         <?php
 
-            $sql = "SELECT clients.representative_last_name, clients.representative_first_name FROM clients WHERE clients.representative_last_name like %'.$name.'%;";
-            $result = mysqli_query($conn, $sql);
+        $sql1 = 'SELECT clients.client_id, cases.case_id, clients.classification, clients.representative_last_name, clients.representative_first_name, cases.date_of_release, cases.date_of_maturity, cases.loan_amount, cases.actual_total_balance, cases.status FROM clients, cases WHERE clients.representative_last_name like "%'.$name.'%" OR clients.representative_first_name like "%'.$name.'%" OR clients.company_name like "%'.$name.'%"';
+
+            $result = mysqli_query($conn, $sql1);
 
             if (mysqli_num_rows($result) > 0) {
                 // output data of each row
