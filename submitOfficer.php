@@ -21,11 +21,10 @@
 		$result = $conn->query($sql);
 
 		if(!$result){
-			echo('orayt');
 			echo $conn->error;
 		}
 		else{
-			echo('nuna bes');
+			echo('<meta http-equiv="refresh" content="0;URL=viewAllOfficers.php"/>');
 		}		
 	}
 	else{

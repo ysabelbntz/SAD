@@ -12,6 +12,7 @@
 </script>
 <?php 
 
+
 include("layout.php"); //this includes layout.php which contains the navbar and footer
 include_once("database.php");
 $sql = 'SELECT client_id, representative_last_name, representative_first_name  
@@ -82,8 +83,8 @@ echo('
 
   <div class="form-group"> 
     <div class="col-sm-offset-4 col-sm-6">
-      <button type="submit" class="btn btn-default" id="add_button" name="add_button">Add Case</button>
-      <button type="submit" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/main.php\';">Cancel </button>
+      <input type="submit" class="btn btn-default" value="Add Case" id="add_button" name="add_button"/>
+      <a href="addcase.php" class="btn btn-default" id="cancel">Cancel</a>
     </div>
   </div>
 </form>

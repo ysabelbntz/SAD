@@ -7,16 +7,16 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 ?> 
 	<div id="with_searchbar">
 		<h1 id="h1_view">VIEW ALL CLIENTS</h1>
-		<form class="pull-right searchsearch" role="search" action="search.php">
+		<form class="pull-right searchsearch" role="search" action="search.php" method="POST">
 			<div class="form-group" id="for_Search">
-				<input type="text" class="form-control" required name="searcher" placeholder="Search">
-					<button type="submit" class="btn btn-default" role="button"><i class="glyphicon glyphicon-search" id="search_glyph"></i></button>
+				<input type="text" class="form-control" name="searcher" placeholder="Search" required>
+					<button type="submit" class="btn btn-default" role="button" name="add_button"><i class="glyphicon glyphicon-search" id="search_glyph"></i></button>
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="table-responsive" id="view_all_table">
-        <table class="table table-striped">
+        <table class="table table-striped table-hover">
           <thead id="colored_head">
             <tr>
                 <th id="icons_head">CLASS</th>
@@ -33,7 +33,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
         <?php
             include ('database.php');
 
-            $sql = "SELECT clients.client_id, cases.case_id, clients.classification, clients.representative_last_name, clients.representative_first_name, cases.date_of_release, cases.date_of_maturity, cases.loan_amount, cases.actual_total_balance, cases.status FROM clients, cases WHERE clients.client_id=cases.client_id;";
+            $sql = "SELECT clients.client_id, cases.case_id, clients.classification, clients.representative_last_name, clients.representative_first_name, cases.date_of_release, cases.date_of_maturity, cases.loan_amount, cases.actual_total_balance, cases.status FROM clients, cases WHERE clients.client_id=cases.client_id AND clients.status!=\"Closed\";";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0) {

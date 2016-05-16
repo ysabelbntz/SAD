@@ -12,6 +12,10 @@ body{ /* for the body in general */
 	text-align: right;
 }
 
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #929292;
+}
+
 /* -------------------------------------------------------------------------------------------*/
 
 /* LAYOUT.PHP */
@@ -50,6 +54,19 @@ body{ /* for the body in general */
 	max-height: 100px; 
 }
 
+.footer {
+
+position: fixed;
+height: 35px;
+bottom: 0;
+width: 84%;
+background-color: transparent;
+text-align: right;
+font-size: 10px;
+color: #929292;
+z-index: 100!important;
+}
+
 /* -------------------------------------------------------------------------------------------*/
 
 /* MAIN.PHP */
@@ -61,13 +78,14 @@ body{ /* for the body in general */
 	position: absolute;
 	width: 84%;
 	height: auto;
-	z-index: 99999!important;
+	z-index: 9999!important;
 	color: #929292;
 }
 
 #calendar{
-	max-width: 47%;
+	max-width: 48%;
 	padding-left: 2%;
+	margin-bottom: 5%;
 	float:left;
 }
 
@@ -80,7 +98,6 @@ body{ /* for the body in general */
 #side_by_side{ /* both tables */
 	margin-top: 14%;
 	width: 100%;
-	
 	height:500px;
 }
 
@@ -112,6 +129,7 @@ body{ /* for the body in general */
 
 #subthead{ /* client, company, etc header */
 	font-size: 14px;
+	background-color: #F9BE4A;
 }
 
 .searchsearch{
@@ -307,6 +325,7 @@ h2{
 
 #logo_column{ /* to right align the glyphicons */
 	text-align: right;
+	width: 8%;
 }
 
 .container{ /* to adjust row height */
@@ -503,3 +522,5 @@ h2{
 #report_buttons{
 	margin-top: 6.5%;
 }
+
+

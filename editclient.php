@@ -93,7 +93,7 @@ echo('
   <div class="form-group"> 
     <div class="col-sm-offset-4 col-sm-7">
       <button type="submit" class="btn btn-default" id="add_button" name="add_button">Update</button>
-      <button type="submit" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/addclient.php\';">Cancel </button>
+     <a href="editclient.php" class="btn btn-default" id="cancel">Cancel </a>
     </div>
   </div>
 </form>

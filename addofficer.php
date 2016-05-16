@@ -28,8 +28,8 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
     <label class="control-label col-sm-4" for="status">Account Type </label>
     <div class="col-sm-6">
       <select class="form-control form-control-inline" id="status" name="status">
-      <option>office</option>
-      <option>admin</option>
+      <option>Officer</option>
+      <option>Admin</option>
       </select>
     </div>
   </div>
@@ -60,7 +60,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
   <div class="form-group"> 
     <div class="col-sm-offset-4 col-sm-7">
       <input type="submit" value="Add Officer" class="btn btn-default" id="add_button" name="add_button" onclick="isEmpty();"/>
-      <button type="cancel" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/addclient.php\';">Cancel </button>
+      <a href="addofficer.php" class="btn btn-default" id="cancel">Cancel </a>
     </div>
   </div>
 </form>

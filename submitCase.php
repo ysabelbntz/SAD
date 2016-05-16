@@ -58,18 +58,30 @@
 				$Y = $Ymd[0];
 				$m = $Ymd[1];
 				$d = $Ymd[2];
-				$sql3 = "INSERT INTO expected(client_id,case_id,expected_due_date,expected_principal_balance,expected_interest_balance,expected_total_balance,principal_due,interest_due,total_due,status) VALUES('$id1','1','$doe','$epb','$eib','$etb','$pdue','$idue','$tdue','Unpaid')";
-				$result3 = $conn->query($sql3);
-				$tdue = $idue+$pdue;
-				$epb=$epb-$pdue;
-				$eib=$eib-$idue;
-				$etb=$epb+$eib;
-				$i++;
-			}
+				$sql2="SELECT case_id FROM cases WHERE cases.client_id='$id1' AND date_of_release='$dor'";
+				$result2 = mysqli_query($conn, $sql2);
+				  if (mysqli_num_rows($result2) > 0) 
+				  {
+				    while($row = mysqli_fetch_assoc($result2)) 
+				    {
+				    $forcase='.$row['case_id'].';
+					$sql3 = "INSERT INTO expected(client_id,case_id,expected_due_date,expected_principal_balance,expected_interest_balance,expected_total_balance,principal_due,interest_due,total_due,status) VALUES('$id1','$forcase','$doe','$epb','$eib','$etb','$pdue','$idue','$tdue','Unpaid')";
+					$result3 = $conn->query($sql3);
+					$tdue = $idue+$pdue;
+					$epb=$epb-$pdue;
+					$eib=$eib-$idue;
+					$etb=$epb+$eib;
+					$i++;
+					}
+				}
+				else{
+					echo $conn->error;
+				}	
 
-			echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?url_id='.$id1.'"/>');
+			echo('<meta http-equiv="refresh" content="0;URL=view_Single.php?client='.$id1.'"/>');
 			
 		}		
+	   }
 	}
 	else{
 		echo $conn->error;

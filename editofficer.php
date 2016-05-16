@@ -61,7 +61,7 @@ echo('
   <div class="form-group"> 
     <div class="col-sm-offset-4 col-sm-7">
       <input type="submit" value="Add Officer" class="btn btn-default" id="add_button" name="add_button" onclick="isEmpty();"/>
-      <button type="cancel" class="btn btn-default" id="cancel" onClick="window.location=\'http://localhost:8080/addclient.php\';">Cancel </button>
+      <a href="editofficer.php" class="btn btn-default" id="cancel">Cancel </a>
     </div>
   </div>
 </form>

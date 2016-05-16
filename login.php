@@ -17,7 +17,7 @@ if($username == "" || $password == "")
 	exit;
 }
 
-$sql = "SELECT username,password,account_type,account_id FROM accounts WHERE username='".$username."';";
+$sql = "SELECT username,password,account_type,account_id FROM accounts WHERE username='".$username."' AND account_type!=\"Closed\"";
 
 $result = $conn->query($sql);
 
