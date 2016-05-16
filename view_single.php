@@ -20,6 +20,7 @@ include ('database.php');
     ?>
         	<h1 id="single_client_name"><?php echo $row['representative_last_name'].", ".$row['representative_first_name'];?></h1>
             <h3 id="single_client_status">(<?php echo $row['status'];?>)</h3>
+            <a href="deleter.php?type=2&id=<?php echo($local_id) ?>"><i class="glyphicon glyphicon-remove" id="icons"></i></a>
 
     <?php
         		}

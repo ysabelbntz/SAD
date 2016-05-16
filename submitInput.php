@@ -70,6 +70,15 @@
 			$sql5 = "UPDATE cases SET actual_total_balance = '$atb', actual_principal_balance = '$apb', actual_interest_balance = '$aib' WHERE case_id = '$cid'";//updates status
 	        $result5 = $conn->query($sql5);
 
+	        $sql6 = "SELECT actual_total_balance FROM cases WHERE case_id=".$cid;
+	        $result6 = mysql_query($conn,$sql6);
+	        $rowG = mysql_fetch_assoc($result6);
+	        if($rowG['actual_total_balance'] <= 0){
+	        	$sql7 = "UPDATE cases SET status='Closed' WHERE case_id=".$cid;
+	        	$result7 = mysql_query($conn,$sql7);
+	        }
+
+
 			if(!$result4||!$result5){
 				echo $conn->error;
 			}

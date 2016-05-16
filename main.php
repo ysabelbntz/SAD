@@ -3,7 +3,6 @@ include("database.php");
 include("layout.php");
 
 $curr_date = date("Y/m/d");
-
 ?>
 
 

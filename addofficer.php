@@ -28,8 +28,8 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
     <label class="control-label col-sm-4" for="status">Account Type </label>
     <div class="col-sm-6">
       <select class="form-control form-control-inline" id="status" name="status">
-      <option>office</option>
-      <option>admin</option>
+      <option>Officer</option>
+      <option>Admin</option>
       </select>
     </div>
   </div>

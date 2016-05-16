@@ -325,6 +325,7 @@ h2{
 
 #logo_column{ /* to right align the glyphicons */
 	text-align: right;
+	width: 8%;
 }
 
 .container{ /* to adjust row height */

@@ -33,7 +33,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
         <?php
             include ('database.php');
 
-            $sql = "SELECT clients.client_id, cases.case_id, clients.classification, clients.representative_last_name, clients.representative_first_name, cases.date_of_release, cases.date_of_maturity, cases.loan_amount, cases.actual_total_balance, cases.status FROM clients, cases WHERE clients.client_id=cases.client_id;";
+            $sql = "SELECT clients.client_id, cases.case_id, clients.classification, clients.representative_last_name, clients.representative_first_name, cases.date_of_release, cases.date_of_maturity, cases.loan_amount, cases.actual_total_balance, cases.status FROM clients, cases WHERE clients.client_id=cases.client_id AND clients.status!=\"Closed\";";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0) {
