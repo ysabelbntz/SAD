@@ -163,7 +163,7 @@ while($rowcal=$resultcal->fetch_array())
 		{
 ?>
 	    	{
-	    		title:<?php echo "'".$rowcal[0]." ".$rowcal[1]?>,
+	    		title:<?php echo "'".$rowcal[0].", ".$rowcal[1]?>,
 	    		start: <?php echo "'".$rowcal[2]."'"?>
 	    	}
 	    <?php
@@ -173,7 +173,7 @@ while($rowcal=$resultcal->fetch_array())
 		{
 		?>
 			{
-	    		title:<?php echo "'".$rowcal[0]." ".$rowcal[1]."'"?>,
+	    		title:<?php echo "'".$rowcal[0].", ".$rowcal[1]."'"?>,
 	    		start: <?php echo "'".$rowcal[2]."'"?>
 	    	},
 		<?php

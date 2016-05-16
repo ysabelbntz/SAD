@@ -31,6 +31,7 @@ else
 	$sql4 = "SELECT a.account_id, a.username, cl.client_id, cl.company_name, p.turn_amount, p.penalty, p.turn_date, cl.classification, ca.actual_total_balance
 	FROM accounts a, clients cl, payment p, cases ca
 	WHERE a.account_id=p.account_id
+	AND a.account_id=cl.account_id
 	AND cl.client_id=p.client_id
 	AND ca.client_id=cl.client_id
 	AND ca.client_id=p.client_id
@@ -94,7 +95,7 @@ if (mysqli_num_rows($result4) > 0)
 	<tr>
 		<td colspan="3"></td>
 		<td id="bottom">Total Collection</td>
-		<td id="bottom">'.$total.'</td>
+		<td style="text-align:right;">'.$total.'</td>
 	</tr>
 	</table>
 	</body>
