@@ -55,7 +55,7 @@ $result123 = mysqli_query($conn, $sql123);
   {
     while($row = mysqli_fetch_assoc($result123))
     {
-$acct='admin';
+$acct='Admin';
 if($row['account_type']===$acct){
 echo('
 <div class="top"style="text-align:right;">
