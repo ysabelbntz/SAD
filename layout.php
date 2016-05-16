@@ -1,8 +1,8 @@
 <?php
+session_start();
+
 include("authorization.php"); 
 include_once("database.php");
- 
-session_start();
 
 $userid = $_SESSION['id'];
 $sql123 = 'SELECT account_type,account_id FROM accounts WHERE account_id like "'.$userid.'"';
@@ -43,7 +43,7 @@ $result123 = mysqli_query($conn, $sql123);
 	    </div>
 
 
-<div >
+<div>
 <!-- if admin is logged in -->
 <?php 
   if (mysqli_num_rows($result123) > 0) 
@@ -54,7 +54,7 @@ $acct='Admin';
 if($row['account_type']===$acct){
 echo('
 <div class="top"style="text-align:right;">
-	Logged in as '.$_SESSION['username'].'|| <a href="logout.php">Log out</a>
+	Logged in as '.$_SESSION['username'].'|| <a href="index.php" action="session_destroy()">Log out</a>
 	<div style="margin-bottom:1%;">
 		<div>
 			 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -147,9 +147,9 @@ echo('
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/jquery.js"></script>
 	<script src="js/responsive-calendar.js"></script>
-
 	<script src="js/moment.min.js"></script>
 	<script src="fullcalendar/fullcalendar.js"></script>
+
 
 
 
