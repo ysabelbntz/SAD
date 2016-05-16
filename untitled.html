@@ -1,8 +1,0 @@
-<?php 
-session_start(); //starts the session since this doesn't include layout.php where the session is started
-
-if(isset($_SESSION['id_user'])){ //checks if a user is logged-in
-	session_destroy(); //ends the session of the user
-	echo('<meta http-equiv="refresh" content="0;URL=index.php"/>');
-} 
-?>
