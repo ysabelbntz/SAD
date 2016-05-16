@@ -1,16 +1,14 @@
 <?php
-  $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-  $server = $url["host"];
-  $username = $url["user"];
-  $password = $url["pass"];
-  $db = substr($url["path"],1);
+// $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-  mysql_connect($server, $username, $password);
+$hostname = "us-cdbr-iron-east-04.cleardb.net";
+$username = "b248e13104fe12";
+$password = "56e753b9";
+$database = "heroku_0d16bc3ff328247";
 
-  $conn= mysql_select_db($db);
-
-
+$conn = new mysqli ($servername, $username, $password);
+$conn->select_db($database);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
