@@ -65,7 +65,7 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr>
             <td>Total Interest</td>
-            <td class="total" id="money">'.number_format(($row['loan_amount']*$weeks),2).'</td>
+            <td class="total" id="money">'.number_format(($row['loan_amount']*($weeks+1),2).'</td>
           </tr>
           <tr>
             <td colspan="2" id="input_title">Interest</td>
@@ -80,7 +80,7 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr>
             <td>Total Interest</td>
-            <td class="total" id="money">'.number_format($row['actual_interest_balance']*$weeks,2).'</td>
+            <td class="total" id="money">'.number_format($row['actual_interest_balance']*($weeks+1),2).'</td>
           </tr>
           <tr>
             <td colspan="2" id="input_title">Penalty</td>
@@ -99,7 +99,7 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr class="total" id="input_title">
             <td>Total</td>
-            <td id="money">'.number_format((($row['loan_amount']*$weeks)+($row['actual_interest_balance']*$weeks)+($penalty*$weeks*7)),2).'</td>
+            <td id="money">'.number_format((($row['loan_amount']*$weeks)+($row['actual_interest_balance']*($weeks+1))+($penalty*$weeks*7)),2).'</td>
           </tr>
         </tbody>
       </table>
