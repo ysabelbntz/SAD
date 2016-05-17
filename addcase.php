@@ -9,6 +9,19 @@
           return false;
       }
   }
+
+  function isLoanNegative(){
+  var x = document.getElementById("loan").value;
+
+  if(x < 0){
+    document.getElementById('lNega').style.display = "block";
+    document.getElementById('add_button').disabled= true;
+  }
+  else{
+    document.getElementById('lNega').style.display = "none";
+    document.getElementById('add_button').disabled= false;
+  }
+ }
 </script>
 <?php 
 
@@ -35,7 +48,8 @@ echo('
   <div class="form-group">
     <label class="control-label col-sm-4" for="loan">Loan Amount </label>
     <div class="col-sm-4">
-      <input type="number" class="form-control" id="loan" name="loan" placeholder="Micro: 3-20K, SME: 30K+" required>
+      <input type="number" class="form-control" id="loan" name="loan" placeholder="Micro: 3-20K, SME: 30K+" oninput="isLoanNegative();" required>
+      <span id="lNega" style="display: none; color:#e35152;">You must enter a valid loan amount</span>
     </div>
   </div>
   <div class="form-group">
