@@ -1,4 +1,8 @@
 
+CREATE DATABASE IF NOT EXISTS mega;
+
+use mega;
+
 CREATE TABLE accounts(
 	account_id MEDIUMINT NOT NULL AUTO_INCREMENT,
 	first_name VARCHAR(50) NOT NULL,
