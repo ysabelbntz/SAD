@@ -2,7 +2,6 @@
 <?php
   include ('database.php');
   session_start();
-  echo('sasa');
   if(isset($_POST['add_button'])){
     
       $id1 = $_GET['value'];
@@ -15,8 +14,7 @@
           echo $conn->error;
       }
       else{
-        echo('sasa');
-        // echo('<meta http-equiv="refresh" content="0;URL=view_single.php?url_id='.$id1.'"/>');
+        echo('<meta http-equiv="refresh" content="0;URL=view_single.php?client='.$id1.'"/>');
       }   
     }
 
