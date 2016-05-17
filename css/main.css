@@ -304,6 +304,10 @@ h2{
 	height: 19px;
 }
 
+#sbutton{
+	position: absolute;
+}
+
 #view_all_table
 {
 	width: 100%;

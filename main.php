@@ -27,10 +27,10 @@ $display_date = date("M d, Y");
 				    </tr>
 <?php
 
-$sql = "SELECT clients.representative_last_name, clients.representative_first_name,clients.company_name
+$sql = "SELECT clients.representative_last_name, clients.representative_first_name,clients.company_name, clients.status
 FROM expected, clients
 WHERE expected.expected_due_date='".$curr_date."'
-AND expected.client_id = clients.client_id;";
+AND expected.client_id = clients.client_id AND clients.status!='Closed';";
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0)
@@ -142,9 +142,9 @@ $(document).ready(function() {
     	contentHeight:500,
 <?php
 
-$sqlcal = "SELECT clients.representative_last_name, clients.representative_first_name,expected.expected_due_date
+$sqlcal = "SELECT clients.representative_last_name, clients.representative_first_name,expected.expected_due_date,clients.status
 FROM expected, clients
-WHERE expected.client_id = clients.client_id;";
+WHERE expected.client_id = clients.client_id AND clients.status!='Closed'";
 
 $resultcal = $conn->query($sqlcal);
 
