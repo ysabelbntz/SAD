@@ -207,25 +207,66 @@ include ('database.php');
 		  	</tr>
 		</thead>
 		<tbody>
-
+			<tr>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+			</tr>
 		<?php
+
+			$origapb = 0;
+			$origaib = 0;
+			$origatb = 0;
+
 			if (isset($_GET['client'])){
 		  	$local_id=$_GET['client'];
 
-            $sql5 = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, c.actual_principal_balance, c.actual_interest_balance, c.actual_total_balance FROM cases c, payment p WHERE c.client_id=$local_id AND p.client_id=$local_id;";
+
+
+
+            $sql5 = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, c.loan_amount, c.weekly_interest_rate, c.payment_period, c.actual_principal_balance, c.actual_interest_balance, c.actual_total_balance FROM cases c, payment p WHERE c.client_id=$local_id AND p.client_id=$local_id;";
             $result5 = mysqli_query($conn, $sql5);
 
+
+            $sql6 = "SELECT c.loan_amount, c.weekly_interest_rate, c.payment_period FROM cases c WHERE c.client_id=$local_id";
+            $result6 = mysqli_query($conn, $sql6);
+
+ 			if (mysqli_num_rows($result6) > 0) {
+ 				while($rowa = mysqli_fetch_assoc($result6)) {
+ 				$origapb = $rowa['loan_amount'];
+            	$origaib = $rowa['loan_amount']*($rowa['weekly_interest_rate']*0.01)*$rowa['payment_period'];
+            	$origatb = $origapb+$origaib;
+            }
+        }
             if (mysqli_num_rows($result5) > 0) {
+
+            	
                 while($row = mysqli_fetch_assoc($result5)) {
+
+               
+
         ?>
         	<tr>
         		<td class="container" id="dates"><?php echo $row['turn_date']?></td>
         		<td class="container" id="single_due"><?php echo $row['principal_paid']?></td>
                 <td class="container" id="single_due"><?php echo $row['interest_paid']?></td>
         		<td class="container" id="single_due"><?php echo $row['turn_amount']?></td>
-                <td class="container" id="single_balance"><?php echo $row['actual_principal_balance']?></td>
-                <td class="container" id="single_balance"><?php echo $row['actual_interest_balance']?></td>
-                <td class="container" id="single_balance"><?php echo $row['actual_total_balance']?></td>
+
+        		<?php
+                $origapb = $origapb-$row['principal_paid'];
+            	$origaib = $origaib-$row['interest_paid'];
+            	$origatb = $origatb-$row['turn_amount'];
+            	?>
+        		<td class="container" id="single_balance"><?php echo $origapb?></td>
+                <td class="container" id="single_balance"><?php echo $origaib?></td>
+                <td class="container" id="single_balance"><?php echo $origatb?></td>
+
+                
+
             </tr>
         <?php
         		}

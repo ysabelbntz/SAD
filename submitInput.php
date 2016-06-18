@@ -59,7 +59,10 @@
     					}
     					$finaleid = $eid;
                 	}
-                	        	
+                	elseif(($paid == "Unpaid") AND $tamt != 0){
+                		$finaleid = $eid;
+                		break;
+                	}    	        	
                 }
             }
 			$sql4 = "INSERT INTO payment(client_id,case_id,account_id,expected_id,turn_date,type_of_payment,check_number,turn_amount,principal_paid,
