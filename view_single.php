@@ -228,7 +228,7 @@ include ('database.php');
 
 
 
-            $sql5 = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, c.loan_amount, c.weekly_interest_rate, c.payment_period, c.actual_principal_balance, c.actual_interest_balance, c.actual_total_balance FROM cases c, payment p WHERE c.client_id=$local_id AND p.client_id=$local_id AND AND c.status='Active'";
+            $sql5 = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, c.loan_amount, c.weekly_interest_rate, c.payment_period, c.actual_principal_balance, c.actual_interest_balance, c.actual_total_balance FROM cases c, payment p WHERE c.client_id=$local_id AND p.client_id=$local_id AND c.status='Active'";
             $result5 = mysqli_query($conn, $sql5);
 
 
