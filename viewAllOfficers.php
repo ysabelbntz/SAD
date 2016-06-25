@@ -4,6 +4,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 
 // ADD TOOLTIPS!!!!!!!!!!!!!! :---)
 
+
 ?> 
 	<div id="with_searchbar">
 		<h1 id="h1_view">VIEW ALL OFFICERS</h1>
@@ -35,7 +36,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
         ?>
                     <tr>
                         <td class="container"><?php echo $row['last_name'].", ".$row['first_name']?></td>
-                        <td class="container" id="logo_column"><a href="editofficer.php?value=<?php echo $row['account_id']?>"><i class="glyphicon glyphicon-pencil" id="icons"></i></a> <a href="deleter.php?type=1&id=<?php echo $row['account_id']?>"><i class="glyphicon glyphicon-remove" id="icons"></i></a></td>
+                        <td class="container" id="logo_column"><a href="editofficer.php?value=<?php echo $row['account_id']?>" data-toggle="tooltip" data-placement="bottom" title="Edit Officer"><i class="glyphicon glyphicon-pencil" id="icons"></i></a> <a href="deleter.php?type=1&id=<?php echo $row['account_id']?>" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="glyphicon glyphicon-remove" id="icons"></i></a></td>
                         <td class="container" id="center_column"><?php echo $row['email']?></td>
                         <td class="container" id="center_column"><?php echo $row['address']?></td>
                         <td class="container" id="center_column"><?php echo $row['contact_number']?></td>
@@ -43,6 +44,12 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
                         <td class="container" id="center_column"><?php echo "1"?></td>
                         <td class="container" id="center_column"><?php echo "0"?></td>
                     </tr>
+
+                    <script>
+                    $(document).ready(function(){
+                        $('[data-toggle="tooltip"]').tooltip(); 
+                    });
+                    </script>
 
             <?php
                 }

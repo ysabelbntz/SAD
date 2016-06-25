@@ -11,4 +11,7 @@
     // exec("mysqldump --user=$dbuser --password=$dbpass --host=$dbhost $dbname > ".$toDay."_DB.sql");
 
 echo('<meta http-equiv="refresh" content="0;URL=main.php"/>');
+print '<script type="text/javascript">'; 
+print 'alert("The system has been restored.")'; 
+print '</script>';  
 ?>

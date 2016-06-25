@@ -67,6 +67,7 @@ $content='
 		<tr>
 			<td colspan="5">Business Type: '.$class.'</td>
 		</tr>
+		<tr> </tr>
 		<tr id = "mainthead">
 			<td>Officer</td>
 			<td>Client Name</td>

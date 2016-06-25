@@ -73,7 +73,7 @@ $weeks=0;
 $penalty=25;
 $today = date("Y-m-d");
 $todayWord = date("M d, Y");
-$sql2='SELECT expected_due_date, status, case_id FROM expected WHERE case_id='.$cid.'';
+$sql2="SELECT expected_due_date, status, case_id FROM expected WHERE case_id=$cid";
 $result2 = $conn->query($sql2);
  if (mysqli_num_rows($result2) > 0) {
     while($row = mysqli_fetch_assoc($result2)) {
@@ -173,10 +173,10 @@ $result = mysqli_query($conn, $sql);
     <div class="form-group">
       <label class="control-label col-sm-offset-2 col-sm-4" for="class">Payment Type</label>
       <div class="col-sm-6" id="input_class"> 
-        <select class="form-control form-control-inline" id="class" name="class">
+        <select class="form-control form-control-inline" id="class" name="classtype" onchange='class_type(this.value);'>
         <option value="cash">Cash</option>
         <option value="check">Check</option>
-        <option value="col">Collateral</option>
+        <option value="collateral">Collateral</option>
       </select>
       </div>
     </div>
@@ -184,7 +184,7 @@ $result = mysqli_query($conn, $sql);
     <div class="form-group" style='display:block;'>
       <label class="control-label col-sm-offset-2 col-sm-4" for="check">Check Number </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" id="check" name="check" placeholder="Check Number">
+        <input type="text" class="form-control" id="check" name="check" placeholder="Check Number" readonly>
       </div>
     </div>
 
@@ -223,11 +223,3 @@ $result = mysqli_query($conn, $sql);
     }
   }
 ?>
-  <script type="text/javascript">
-    $("select[name=class]").change(function() {
-    if (this.value == "check")
-        $("input[name=check]").prop("disabled", false);
-    else
-        $("input[name=check]").prop("disabled", true);
-    }).change();
-  </script>

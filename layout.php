@@ -11,8 +11,10 @@ else{
 $userid = $_SESSION['id'];
 $sql123 = 'SELECT account_type,account_id FROM accounts WHERE account_id like "'.$userid.'"';
 $result123 = mysqli_query($conn, $sql123);
-
 ?>
+
+
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -154,7 +156,7 @@ echo('
 	<script src="js/responsive-calendar.js"></script>
 	<script src="js/moment.min.js"></script>
 	<script src="fullcalendar/fullcalendar.js"></script>
-
+	
 	<?php
 	}
 	?>

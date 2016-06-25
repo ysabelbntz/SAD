@@ -7,7 +7,7 @@
       $id1 = $_GET['value'];
       $notes=$_POST['notes'];
 
-      $sql1="UPDATE cases SET notes = '$notes' WHERE case_id = '$id1';";
+      $sql1="UPDATE cases SET notes = '$notes' WHERE case_id = '".$id1."';";
       $result1 = $conn->query($sql1);
 
       if(!$result1){

@@ -27,10 +27,10 @@ $display_date = date("M d, Y");
 				    </tr>
 <?php
 
-$sql = "SELECT clients.representative_last_name, clients.representative_first_name,clients.company_name, clients.status
-FROM expected, clients
+$sql = "SELECT clients.representative_last_name, clients.representative_first_name,clients.company_name, clients.status, cases.status
+FROM expected, clients, cases
 WHERE expected.expected_due_date='".$curr_date."'
-AND expected.client_id = clients.client_id AND clients.status!='Closed';";
+AND expected.client_id = clients.client_id AND cases.status!='Closed' AND clients.status!='Closed';";
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0)
@@ -80,9 +80,10 @@ else
 <?php
 $acctid=$_SESSION["id"];
 $sqlcase = "SELECT clients.representative_last_name, clients.representative_first_name,clients.company_name
-FROM accounts,clients
+FROM accounts,clients,cases
 WHERE
-(clients.status='ACTIVE' OR clients.status='RISK')
+(clients.status='Active' OR clients.status='Risk')
+AND cases.status='Active'
 AND clients.account_id = '".$acctid."'
 AND accounts.account_id = '".$acctid."'
 ;";

@@ -13,10 +13,12 @@ $name=$_POST['searcher'];
 		
 		?>
 		<form class="pull-right searchsearch" role="search" action="search.php" method="post">
-			<div class="form-group" id="for_Search">
-				<input type="text" class="form-control" name="searcher" placeholder="Search" required>
-					<button type="submit" class="btn btn-default" role="button"><i class="glyphicon glyphicon-search" id="search_glyph"></i></button>
-			</div>
+			<div class="input-group" id="for_Search">
+                <input type="text" class="form-control" name="searcher" placeholder="Search" id="area" required />
+                <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" role="button" name="add_button" id="sbutton"><i class="glyphicon glyphicon-search" id="search_glyph"></i></button>
+                </span>
+            </div>
 		</form>
 	</div>
 	<div class="table-responsive" id="view_all_table">
@@ -35,7 +37,7 @@ $name=$_POST['searcher'];
         <tbody>
         <?php
 
-        $sql1 = 'SELECT clients.client_id, cases.case_id, clients.classification, clients.representative_last_name, clients.representative_first_name, cases.date_of_release, cases.date_of_maturity, cases.loan_amount, cases.actual_total_balance, cases.status FROM clients, cases WHERE clients.representative_last_name like "%'.$name.'%" OR clients.representative_first_name like "%'.$name.'%" OR clients.company_name like "%'.$name.'%"';
+        $sql1 = 'SELECT clients.client_id, cases.case_id, clients.classification, clients.representative_last_name, clients.address, clients.representative_first_name, cases.date_of_release, cases.date_of_maturity, cases.loan_amount, cases.actual_total_balance, cases.status FROM clients, cases WHERE clients.representative_last_name like "%'.$name.'%" OR clients.representative_first_name like "%'.$name.'%" OR clients.company_name like "%'.$name.'%"  OR clients.address like "%'.$name.'%"';
 
             $result = mysqli_query($conn, $sql1);
 

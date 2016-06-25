@@ -93,7 +93,7 @@ echo('
   <div class="form-group"> 
     <div class="col-sm-offset-4 col-sm-7">
       <button type="submit" class="btn btn-default" id="add_button" name="add_button">Update</button>
-     <a href="editclient.php" class="btn btn-default" id="cancel">Cancel </a>
+     <a href="viewClient.php" class="btn btn-default" id="cancel">Cancel </a>
     </div>
   </div>
 </form>
