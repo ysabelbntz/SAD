@@ -63,7 +63,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 include_once("database.php");
 $clid = $_GET['client'];
 $cid = $_GET['case'];
-$sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name, cases.case_id, cases.loan_amount, cases.actual_interest_balance, (cases.loan_amount/cases.payment_period) AS wkly FROM cases, clients WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND clients.client_id=cases.client_id';
+$sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name, cases.case_id, expected.remaining_interest_due, expected.remaining_principal_due FROM cases, clients, expected WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND expected.case_id = "'.$cid.'" AND clients.client_id=cases.client_id AND expected.case_id=cases.case_id LIMIT 1';
 ?>
 
 <h1 id="h1_input">INPUT PAYMENT</h1>
@@ -107,7 +107,7 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr>
             <td>Principal (Per Week)</td>
-            <td id="money">'.number_format($row['wkly'],2).'</td>
+            <td id="money">'.number_format($row['remaining_principal_due'],2).'</td>
           </tr>
           <tr>
             <td>Weeks Late</td>
@@ -115,14 +115,14 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr>
             <td>Total Principal</td>
-            <td class="total" id="money">'.number_format(($row['wkly']*($weeks+1)),2).'</td>
+            <td class="total" id="money">'.number_format(($row['remaining_principal_due']*($weeks+1)),2).'</td>
           </tr>
           <tr>
             <td colspan="2" id="input_title">Interest</td>
           </tr>
           <tr>
             <td>Interest (Per Week)</td>
-            <td id="money">'.number_format($row['actual_interest_balance'],2).'</td>
+            <td id="money">'.number_format($row['remaining_interest_due'],2).'</td>
           </tr>
           <tr>
             <td>Weeks Late</td>
@@ -130,7 +130,7 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr>
             <td>Total Interest</td>
-            <td class="total" id="money">'.number_format($row['actual_interest_balance']*($weeks+1),2).'</td>
+            <td class="total" id="money">'.number_format($row['remaining_interest_due']*($weeks+1),2).'</td>
           </tr>
           <tr>
             <td colspan="2" id="input_title">Penalty</td>
@@ -149,7 +149,7 @@ $result = mysqli_query($conn, $sql);
           </tr>
           <tr class="total" id="input_title">
             <td>Total</td>
-            <td id="money">'.number_format(($row['wkly']*($weeks+1)) + ($row['actual_interest_balance']*($weeks+1)) + ($penalty*$weeks*7),2).'</td>
+            <td id="money">'.number_format(($row['remaining_principal_due']*($weeks+1)) + ($row['remaining_interest_due']*($weeks+1)) + ($penalty*$weeks*7),2).'</td>
           </tr>
         </tbody>
       </table>

@@ -65,7 +65,7 @@
 				    while($row = mysqli_fetch_assoc($result2)) 
 				    {
 				    $forcase=$row['case_id'];
-					$sql3 = "INSERT INTO expected(client_id,case_id,expected_due_date,expected_principal_balance,expected_interest_balance,expected_total_balance,principal_due,interest_due,total_due,status) VALUES('$id1','$forcase','$doe','$epb','$eib','$etb','$pdue','$idue','$tdue','Unpaid')";
+					$sql3 = "INSERT INTO expected(client_id,case_id,expected_due_date,expected_principal_balance,expected_interest_balance,expected_total_balance,principal_due,interest_due,total_due,remaining_principal_due,remaining_interest_due,status) VALUES('$id1','$forcase','$doe','$epb','$eib','$etb','$pdue','$idue','$tdue','$pdue','$idue','Unpaid')";
 					$result3 = $conn->query($sql3);
 					$tdue = $idue+$pdue;
 					$epb=$epb-$pdue;

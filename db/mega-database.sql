@@ -66,6 +66,8 @@ CREATE TABLE expected(
 	principal_due DECIMAL(9,2)  NOT NULL,
 	interest_due DECIMAL(9,2)  NOT NULL,
 	total_due DECIMAL(9,2)  NOT NULL,
+	remaining_principal_due DECIMAL(9,2)  NOT NULL,
+	remaining_interest_due DECIMAL(9,2)  NOT NULL,
 	status VARCHAR(8) NOT NULL, /*PAID,UNPAID, SKIPPED OVER???*/
 	CONSTRAINT expected_pk PRIMARY KEY (expected_id),
 	CONSTRAINT expected_fk1 FOREIGN KEY (case_id) REFERENCES cases(case_id),
