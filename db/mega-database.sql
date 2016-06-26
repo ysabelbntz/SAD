@@ -85,6 +85,9 @@ CREATE TABLE payment(
 	principal_paid DECIMAL(9,2) NOT NULL,
 	interest_paid DECIMAL(9,2) NOT NULL,
 	penalty FLOAT(4) NOT NULL, /*NUMBER OF DAYS LATE*25* SUBTRACT CURRENT DATE TO LAST DUE DATE*/
+	actual_principal DECIMAL(9,2) NOT NULL,
+	actual_interest DECIMAL(9,2) NOT NULL,
+	actual_total DECIMAL(9,2) NOT NULL,
 	status VARCHAR(8) NOT NULL,
 	notes TEXT,
 	CONSTRAINT payment_pk PRIMARY KEY (payment_id),
