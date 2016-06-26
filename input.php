@@ -63,7 +63,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 include_once("database.php");
 $clid = $_GET['client'];
 $cid = $_GET['case'];
-$sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name, cases.case_id, expected.remaining_interest_due, expected.remaining_principal_due FROM cases, clients, expected WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND expected.case_id = "'.$cid.'" AND clients.client_id=cases.client_id AND expected.case_id=cases.case_id LIMIT 1';
+$sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name, cases.case_id, expected.remaining_interest_due, expected.remaining_principal_due, expected.status FROM cases, clients, expected WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND expected.case_id = "'.$cid.'" AND clients.client_id=cases.client_id AND expected.case_id=cases.case_id AND expected.status="Unpaid" LIMIT 1';
 ?>
 
 <h1 id="h1_input">INPUT PAYMENT</h1>
