@@ -63,7 +63,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 include_once("database.php");
 $clid = $_GET['client'];
 $cid = $_GET['case'];
-$sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name, cases.case_id, expected.remaining_interest_due, expected.remaining_principal_due, expected.status FROM cases, clients, expected WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND expected.case_id = "'.$cid.'" AND clients.client_id=cases.client_id AND expected.case_id=cases.case_id AND expected.status="Unpaid" LIMIT 1';
+$sql = 'SELECT clients.client_id, clients.representative_last_name, clients.representative_first_name, cases.case_id, DATE_FORMAT(expected.expected_due_date, "%M %d, %Y") AS expected, expected.remaining_interest_due, expected.remaining_principal_due, expected.status FROM cases, clients, expected WHERE clients.client_id = "'.$clid.'" AND cases.case_id = "'.$cid.'" AND expected.case_id = "'.$cid.'" AND clients.client_id=cases.client_id AND expected.case_id=cases.case_id AND expected.status="Unpaid" LIMIT 1';
 ?>
 
 <h1 id="h1_input">INPUT PAYMENT</h1>
@@ -98,7 +98,7 @@ $result = mysqli_query($conn, $sql);
       <table class="table table-hover">
         <thead>
           <tr id="input_thead">
-            <th colspan="2">Expected Payment as of '.$todayWord.'</th>
+            <th colspan="2">Expected Payment as of '.$todayWord.'<br>Due on '.$row['expected'].'</th>
           </tr>
         </thead>
         <tbody>

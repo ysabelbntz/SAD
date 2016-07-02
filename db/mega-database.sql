@@ -91,7 +91,6 @@ CREATE TABLE payment(
 	actual_interest DECIMAL(9,2) NOT NULL,
 	actual_total DECIMAL(9,2) NOT NULL,
 	status VARCHAR(8) NOT NULL,
-	notes TEXT,
 	CONSTRAINT payment_pk PRIMARY KEY (payment_id),
 	CONSTRAINT payment_fk1 FOREIGN KEY (client_id) REFERENCES clients(client_id),
 	CONSTRAINT payment_fk2 FOREIGN KEY (account_id) REFERENCES accounts(account_id),

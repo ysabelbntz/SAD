@@ -114,17 +114,21 @@
 		                    echo $conn->error;
 		               }
 		                $finaleid = $eid;
+		                echo $finaleid;
 		            }
 		            else 
 		            {
 		            	$finaleid = $eid;
+		            	echo $finaleid;
+		            	break;
 		            }
 
 		        }              
 		    }
+		    var_dump($finaleid);
 			$sql4 = "INSERT INTO payment(client_id,case_id,account_id,expected_id,turn_date,type_of_payment,check_number,turn_amount,principal_paid,
-				interest_paid,penalty,actual_principal,actual_interest,actual_total,status,notes)
-				VALUES ('$clid','$cid','$userid','$finaleid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', '$apb', '$aib', '$atb', '$status', '$notes')";
+				interest_paid,penalty,actual_principal,actual_interest,actual_total,status)
+				VALUES ('$clid','$cid','$userid','$finaleid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', '$apb', '$aib', '$atb', '$status')";
 				//madami kulang
 			$result4 = $conn->query($sql4);
 
