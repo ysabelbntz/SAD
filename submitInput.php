@@ -6,8 +6,13 @@
 		$cid=$_GET['case'];
 		$userid=$_SESSION['id'];
 		$turndate=$_POST['turndate'];
-		$classtype=$_POST['classtype'];
-		$check=$_POST['check'];
+		$classtype=$_POST['class'];		
+		if($_POST['check'] == null){
+			$check = 0;
+		}
+		else{
+			$check=$_POST['check'];
+		}
 		$principal=$_POST['principal'];
 		$interest=$_POST['interest'];
 		$penalty=$_POST['penalty'];
@@ -109,6 +114,10 @@
 		                    echo $conn->error;
 		               }
 		                $finaleid = $eid;
+		            }
+		            else 
+		            {
+		            	$finaleid = $eid;
 		            }
 
 		        }              
