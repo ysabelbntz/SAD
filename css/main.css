@@ -64,7 +64,6 @@ background-color: transparent;
 text-align: right;
 font-size: 10px;
 color: #929292;
-z-index: 100!important;
 }
 
 /* -------------------------------------------------------------------------------------------*/
@@ -115,7 +114,6 @@ z-index: 100!important;
 	position: absolute;
 	width: 84%;
 	height: auto;
-	z-index: 9999!important;
 	color: #929292;
 }
 
@@ -296,16 +294,22 @@ h2{
 #for_Search{
 	float: right;
 	width: 200px; 
-	height: 20px; 
-	padding-top: 80%;
+	height: 18px; 
+	padding-top: 90%;
+	margin-right: 20%;
+	border-radius: 0;
+	border-right: 0;
 }
 
 #search_glyph{
-	height: 19px;
+	height: 20px;
 }
 
 #sbutton{
 	position: absolute;
+	border-radius: 0;
+	border-left: 0;
+
 }
 
 #view_all_table
@@ -505,6 +509,14 @@ h2{
 
 #single_heads{
 	background-color: #F9BE4A;
+	height: 7vh;
+	padding: 2%;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#single_headsEND{
+	background-color: #929292;
 	height: 7vh;
 	padding: 2%;
 	vertical-align: middle;

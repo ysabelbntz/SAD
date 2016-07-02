@@ -76,6 +76,13 @@ include ('database.php');
 <!-- div for active case header with loan duration -->
 <div>
 	<h3 id="single_client_status">ACTIVE CASE</h3>
+	<?php
+		$sql10 = "SELECT case_id FROM cases WHERE cases.client_id = '$local_id' AND cases.status='Active'";
+    	$result10 = $conn->query($sql10);
+    	if (mysqli_num_rows($result10) == 0) {
+			echo('<a href="addcase.php?value='.$local_id.'"><i class="glyphicon glyphicon-level-up" id="icons"></i></a>');
+		}
+	?>
 	
 
 	<?php
@@ -100,10 +107,7 @@ include ('database.php');
     	if (mysqli_num_rows($result7) > 0) {
         while($row = mysqli_fetch_assoc($result7)) {
 		echo('<a href="input.php?client='.$local_id.'&case='.$row['case_id'].'"><i class="glyphicon glyphicon-plus" id="icons"></i></a>
-		<a href="editcase.php?client='.$local_id.'&case='.$row['case_id'].'"><i class="glyphicon glyphicon-pencil" id="icons"></i></a>
-		<a href="addcase.php?value='.$local_id.'"><i class="glyphicon glyphicon-level-up" id="icons"></i></a>');
-			}
-		}
+		<a href="editcase.php?client='.$local_id.'&case='.$row['case_id'].'"><i class="glyphicon glyphicon-pencil" id="icons"></i></a>');
 	?>
 		</p>
 	</div>
@@ -148,7 +152,7 @@ include ('database.php');
         		<td class="container" id="center_due">Release</td>
         		<td class="container" id="dates"><?php echo $row['dr']?></td>
         		<td colspan="3" id="single_due"></td>
-        		<td class="container" id="single_balance"><?php echo $row['loan_amount']?></td>
+        		<td class="container" id="single_balance"><?php $forIntBal = number_format($row['loan_amount'], 2); echo $forIntBal;?></td>
                 <td class="container" id="single_balance"><?php $forIntBal = number_format($row['intBal'], 2); echo $forIntBal;?></td>
                 <td class="container" id="single_balance"><?php $totIntBal = number_format($row['totalBal'], 2); echo $totIntBal;?></td>
             </tr>
@@ -172,12 +176,12 @@ include ('database.php');
         	<tr>
         		<td class="container" id="center_due"><?php echo $i; $i++; ?></td>
         		<td class="container" id="dates"><?php echo $row['dd']?></td>
-        		<td class="container" id="single_due"><?php echo $row['principal_due']?></td>
-                <td class="container" id="single_due"><?php echo $row['interest_due']?></td>
-                <td class="container" id="single_due"><?php echo $row['total_due']?></td>
-                <td class="container" id="single_balance"><?php echo $row['expected_principal_balance']?></td>
-                <td class="container" id="single_balance"><?php echo $row['expected_interest_balance']?></td>
-                <td class="container" id="single_balance"><?php echo $row['expected_total_balance']?></td>
+        		<td class="container" id="single_due"><?php $forIntBal = number_format($row['principal_due'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_due"><?php $forIntBal = number_format($row['interest_due'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_due"><?php $forIntBal = number_format($row['total_due'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_principal_balance'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_interest_balance'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_total_balance'], 2); echo $forIntBal;?></td>
             </tr>
         <?php
     			}
@@ -251,19 +255,19 @@ include ('database.php');
 
         ?>
         	<tr>
-        		<td class="container" id="dates"><?php echo $row['turn_date']?></td>
-        		<td class="container" id="single_due"><?php echo $row['principal_paid']?></td>
-                <td class="container" id="single_due"><?php echo $row['interest_paid']?></td>
-        		<td class="container" id="single_due"><?php echo $row['turn_amount']?></td>
+        		<td class="container" id="dates"><?php $forIntBal = number_format($row['turn_date'], 2); echo $forIntBal;?></td>
+        		<td class="container" id="single_due"><?php $forIntBal = number_format($row['principal_paid'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_due"><?php $forIntBal = number_format($row['interest_paid'], 2); echo $forIntBal;?></td>
+        		<td class="container" id="single_due"><?php $forIntBal = number_format($row['turn_amount'], 2); echo $forIntBal;?></td>
 
         		<?php
                 $origapb = $origapb-$row['principal_paid'];
             	$origaib = $origaib-$row['interest_paid'];
             	$origatb = $origatb-$row['turn_amount'];
             	?>
-        		<td class="container" id="single_balance"><?php echo $origapb?></td>
-                <td class="container" id="single_balance"><?php echo $origaib?></td>
-                <td class="container" id="single_balance"><?php echo $origatb?></td>
+        		<td class="container" id="single_balance"><?php $forIntBal = number_format($origapb, 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($origaib, 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($origatb, 2); echo $forIntBal;?></td>
 
                 
 
@@ -275,6 +279,10 @@ include ('database.php');
         ?>
 		</tbody>
 	</table>
+	<?php
+				}
+		}
+	?>
 </div>
 <br>
 <!-- div for finished cases -->
@@ -349,7 +357,7 @@ include ('database.php');
         		<td class="container" id="center_due">Release</td>
         		<td class="container" id="dates"><?php echo $row['dr']?></td>
         		<td colspan="3" id="single_due"></td>
-        		<td class="container" id="single_balance"><?php echo $row['loan_amount']?></td>
+        		<td class="container" id="single_balance"><?php $forIntBal = number_format($row['loan_amount'], 2); echo $forIntBal;?></td>
                 <td class="container" id="single_balance"><?php $forIntBal = number_format($row['intBal'], 2); echo $forIntBal;?></td>
                 <td class="container" id="single_balance"><?php $totIntBal = number_format($row['totalBal'], 2); echo $totIntBal;?></td>
             </tr>
@@ -373,12 +381,12 @@ include ('database.php');
         	<tr>
         		<td class="container" id="center_due"><?php echo $i; $i++; ?></td>
         		<td class="container" id="dates"><?php echo $row['dd']?></td>
-        		<td class="container" id="single_due"><?php echo $row['principal_due']?></td>
-                <td class="container" id="single_due"><?php echo $row['interest_due']?></td>
-                <td class="container" id="single_due"><?php echo $row['total_due']?></td>
-                <td class="container" id="single_balance"><?php echo $row['expected_principal_balance']?></td>
-                <td class="container" id="single_balance"><?php echo $row['expected_interest_balance']?></td>
-                <td class="container" id="single_balance"><?php echo $row['expected_total_balance']?></td>
+        		<td class="container" id="single_due"><?php $forIntBal = number_format($row['principal_due'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_due"><?php $forIntBal = number_format($row['interest_due'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_due"><?php $forIntBal = number_format($row['total_due'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_principal_balance'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_interest_balance'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_total_balance'], 2); echo $forIntBal;?></td>
             </tr>
         <?php
     			}
@@ -453,12 +461,12 @@ include ('database.php');
         ?>
         	<tr>
         		<td class="container" id="dates"><?php echo $row['turn_date']?></td>
-        		<td class="container" id="single_due"><?php echo $row['principal_paid']?></td>
-                <td class="container" id="single_due"><?php echo $row['interest_paid']?></td>
-        		<td class="container" id="single_due"><?php echo $row['turn_amount']?></td>
-        		<td class="container" id="single_balance"><?php echo $row['actual_principal']?></td>
-                <td class="container" id="single_balance"><?php echo $row['actual_interest']?></td>
-                <td class="container" id="single_balance"><?php echo $row['actual_total']?></td>
+        		<td class="container" id="single_due"><?php $forIntBal = number_format($row['principal_paid'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_due"><?php $forIntBal = number_format($row['interest_paid'], 2); echo $forIntBal;?></td>
+        		<td class="container" id="single_due"><?php $forIntBal = number_format($row['turn_amount'], 2); echo $forIntBal;?></td>
+        		<td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_principal'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_interest'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_total'], 2); echo $forIntBal;?></td>
 
             </tr>
         <?php
@@ -467,6 +475,7 @@ include ('database.php');
         }
     }
 }
+
 	else{
 		echo('<br> <br><h5>No active cases.</h5><br>');
 	}

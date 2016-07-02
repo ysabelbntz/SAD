@@ -49,7 +49,7 @@
    			echo $conn->error;
    		}	
    		else{
-		    $sql2='SELECT expected_id, case_id, principal_due, interest_due, total_due, status, remaining_principal_due, remaining_interest_due FROM expected WHERE case_id='.$cid.'';
+		    $sql2="SELECT expected_id, case_id, principal_due, interest_due, total_due, status, remaining_principal_due, remaining_interest_due FROM expected WHERE case_id='.$cid.'";
 		    $result2 = $conn->query($sql2);
 		    if (mysqli_num_rows($result2) > 0) {
 		        while($row = mysqli_fetch_assoc($result2)) {
@@ -124,20 +124,26 @@
 		    }
 			$sql4 = "INSERT INTO payment(client_id,case_id,account_id,expected_id,turn_date,type_of_payment,check_number,turn_amount,principal_paid,
 				interest_paid,penalty,actual_principal,actual_interest,actual_total,status,notes)
-				VALUES ('$clid','$cid','$userid','$finaleid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', '$apb', '$aib', '$atb', 'Valid', 'hi')";
+				VALUES ('$clid','$cid','$userid','$finaleid','$turndate','$classtype','$check','$turnamt','$principal','$interest','$penalty', '$apb', '$aib', '$atb', '$status', '$notes')";
 				//madami kulang
 			$result4 = $conn->query($sql4);
 
-			$sql5 = "UPDATE cases SET actual_total_balance = '".$atb."', actual_principal_balance = '".$apb."', actual_interest_balance = '".$aib."' WHERE case_id = '".$cid."'";//updates status
+			$sql5 = "UPDATE cases SET actual_total_balance = '$atb', actual_principal_balance = '$apb', actual_interest_balance = '$aib' WHERE case_id = '$cid' AND status='Active'";//updates status
 	        $result5 = $conn->query($sql5);
-
-	        $sql6 = "SELECT actual_total_balance FROM cases WHERE case_id='".$cid."' AND client_id='".$clid."'";
-	        $result6 = $conn->query($sql6);
-	        $rowG = mysql_fetch_assoc($result6);
-	        if($rowG['actual_total_balance'] <= 0){
-	        	$sql7 = "UPDATE cases SET status='Closed' WHERE case_id='".$cid."' AND client_id='".$clid."'";
-	        	$result7 = $conn->query($sql7);
-	        }
+	        if (mysqli_num_rows($result5) > 0) {
+        	while($row = mysqli_fetch_assoc($result5)) {
+		        $sql6 = "SELECT actual_total_balance FROM cases WHERE case_id='$cid' AND client_id='$clid' AND status='Active'";
+		        $result6 = $conn->query($sql6);
+		        if (mysqli_num_rows($result6) > 0) {
+        		while($rowG = mysqli_fetch_assoc($result6)) {
+			        if($rowG['actual_total_balance'] <= 0){
+			        	$sql7 = "UPDATE cases SET status='Closed' WHERE case_id='$cid' AND client_id='$clid' AND status='Active'";
+			        	$result7 = $conn->query($sql7);
+			        }
+			    }
+			}
+		}
+	}
 
 
 			if(!$result4||!$result5){

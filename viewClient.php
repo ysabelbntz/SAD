@@ -8,12 +8,12 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
 	<div id="with_searchbar">
 		<h1 id="h1_view">VIEW ALL CLIENTS</h1>
 		<form class="pull-right searchsearch" role="search" action="search.php" method="POST">
-			<div class="input-group" id="for_Search">
+            <div class="input-group" id="for_Search">
 
 				<input type="text" class="form-control" name="searcher" placeholder="Search" id="area" required />
-                <span class="input-group-btn">
+
                 <button type="submit" class="btn btn-default" role="button" name="add_button" id="sbutton"><i class="glyphicon glyphicon-search" id="search_glyph"></i></button>
-				</span>
+
 			</div>
 		</form>
 	</div>
