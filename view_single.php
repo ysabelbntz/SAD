@@ -232,11 +232,11 @@ include ('database.php');
 
 
 
-            $sql5 = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, c.loan_amount, c.weekly_interest_rate, c.payment_period, c.actual_principal_balance, c.actual_interest_balance, c.actual_total_balance FROM cases c, payment p WHERE c.client_id=$local_id AND p.client_id=$local_id AND c.status='Active'";
+            $sql5 = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, p.actual_principal, p.actual_interest, p.actual_total, c.status FROM payment p, cases c WHERE p.client_id=$local_id AND c.client_id=$local_id AND p.case_id=c.case_id AND c.status='Active'";
             $result5 = mysqli_query($conn, $sql5);
 
 
-            $sql6 = "SELECT c.loan_amount, c.weekly_interest_rate, c.payment_period FROM cases c WHERE c.client_id=$local_id AND c.status='Active'";
+            /*$sql6 = "SELECT c.loan_amount, c.weekly_interest_rate, c.payment_period, c.status FROM cases c WHERE c.client_id=$local_id AND c.status='Closed'";
             $result6 = mysqli_query($conn, $sql6);
 
  			if (mysqli_num_rows($result6) > 0) {
@@ -245,7 +245,7 @@ include ('database.php');
             	$origaib = $rowa['loan_amount']*($rowa['weekly_interest_rate']*0.01)*$rowa['payment_period'];
             	$origatb = $origapb+$origaib;
             }
-        }
+        }*/
             if (mysqli_num_rows($result5) > 0) {
 
             	
@@ -255,21 +255,13 @@ include ('database.php');
 
         ?>
         	<tr>
-        		<td class="container" id="dates"><?php $forIntBal = number_format($row['turn_date'], 2); echo $forIntBal;?></td>
+        		<td class="container" id="dates"><?php echo $row['turn_date']?></td>
         		<td class="container" id="single_due"><?php $forIntBal = number_format($row['principal_paid'], 2); echo $forIntBal;?></td>
                 <td class="container" id="single_due"><?php $forIntBal = number_format($row['interest_paid'], 2); echo $forIntBal;?></td>
         		<td class="container" id="single_due"><?php $forIntBal = number_format($row['turn_amount'], 2); echo $forIntBal;?></td>
-
-        		<?php
-                $origapb = $origapb-$row['principal_paid'];
-            	$origaib = $origaib-$row['interest_paid'];
-            	$origatb = $origatb-$row['turn_amount'];
-            	?>
-        		<td class="container" id="single_balance"><?php $forIntBal = number_format($origapb, 2); echo $forIntBal;?></td>
-                <td class="container" id="single_balance"><?php $forIntBal = number_format($origaib, 2); echo $forIntBal;?></td>
-                <td class="container" id="single_balance"><?php $forIntBal = number_format($origatb, 2); echo $forIntBal;?></td>
-
-                
+        		<td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_principal'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_interest'], 2); echo $forIntBal;?></td>
+                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_total'], 2); echo $forIntBal;?></td>
 
             </tr>
         <?php
