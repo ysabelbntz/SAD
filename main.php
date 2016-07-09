@@ -3,6 +3,7 @@ include("database.php");
 include("layout.php");
 include("authorization.php"); 
 
+date_default_timezone_set("Asia/Manila");
 $curr_date = date("Y/m/d");
 
 ?>

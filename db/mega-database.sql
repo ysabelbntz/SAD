@@ -1,4 +1,4 @@
-
+DROP DATABASE mega;
 CREATE DATABASE IF NOT EXISTS mega;
 
 use mega;

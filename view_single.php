@@ -284,7 +284,7 @@ include ('database.php');
 		<?php
 		if (isset($_GET['client'])){
 		  	$local_id=$_GET['client'];
-		  	$sql7 = "SELECT case_id FROM cases WHERE cases.client_id = '$local_id' AND cases.status = 'Closed'";
+		  	$sql7 = "SELECT case_id FROM cases WHERE cases.client_id = '".$local_id."' AND cases.status = 'Closed'";
 		  	$result7 = $conn->query($sql7);
 	    	if (mysqli_num_rows($result7) > 0) {
 	        while($rowS = mysqli_fetch_assoc($result7)) {

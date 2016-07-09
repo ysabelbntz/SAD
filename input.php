@@ -59,6 +59,8 @@ function isPricipalNegative(){
 
 <?php 
 
+date_default_timezone_set("Asia/Manila");
+
 include("layout.php"); //this includes layout.php which contains the navbar and footer
 include_once("database.php");
 $clid = $_GET['client'];
