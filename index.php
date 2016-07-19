@@ -1,5 +1,6 @@
 <?php 
 include("layout2.php"); //this includes layout.php which contains the navbar and footer
+session_start();
 ?>
 
 <div id="form_login">
@@ -23,6 +24,12 @@ include("layout2.php"); //this includes layout.php which contains the navbar and
 			<div id="login_btn">
 			<button type="submit" class="btn btn-default" id="login"> Login </button>
 			</div>
+
+			<div id="errMsg">
+	            <?php if(!empty($_SESSION['errMsg'])) { echo $_SESSION['errMsg']; } ?>
+	        </div>
+	        	<?php unset($_SESSION['errMsg']); ?>
+
 	
 
 	</form>

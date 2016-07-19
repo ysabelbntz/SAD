@@ -279,203 +279,200 @@ include ('database.php');
 <br>
 <!-- div for finished cases -->
 <div>
-	<h3 id="single_client_status">FINISHED CASES</h3>
-	<br> <br>
-		<?php
-		if (isset($_GET['client'])){
-		  	$local_id=$_GET['client'];
-		  	$sql7 = "SELECT case_id FROM cases WHERE cases.client_id = '".$local_id."' AND cases.status = 'Closed'";
-		  	$result7 = $conn->query($sql7);
-	    	if (mysqli_num_rows($result7) > 0) {
-	        while($rowS = mysqli_fetch_assoc($result7)) {
-            $sql2 = "SELECT DATE_FORMAT(c.date_of_release, '%b-%d-%y') AS rd, DATE_FORMAT(c.date_of_maturity, '%b-%d-%y') AS md FROM cases c WHERE c.client_id=$local_id AND c.status='Closed'";
-            $result2 = mysqli_query($conn, $sql2);
-
-            if (mysqli_num_rows($result2) > 0) {
-                while($row = mysqli_fetch_assoc($result2)) {
-    ?>
-	    <div class="panel-group">
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-	        <h5 class="panel-title">
-				<a data-toggle="collapse" href="#collapse1"><?php echo $row['rd'].' to '.$row['md'];?></a>
-			</h5>
-		   </div>
-	      <div id="collapse1" class="panel-collapse collapse">
-	        <div class="panel-body">
-
-    <?php
-        		}
-    		}
-    ?>
-<br>
-<!-- div for expected table -->
-<div class="table-responsive" id="div_tables">
-	<table class="table" id="expected_table">
-		<thead>
-		  	<tr>
-		  		<td colspan="8" id="single_headsEND">EXPECTED</td>
-		  	</tr>
-		  	<tr>
-		  		<td rowspan="2" id="center_due">No.</td>
-		  		<td rowspan="2" id="dates">Due Date</td>
-		  		<td colspan="3" id="center_due">Due</td>
-		  		<td colspan="3" id="center_balance">Balance</td>
-		  	</tr>
-		  	<tr>
-		  		<td id="center_due">Principal</td>
-		  		<td id="center_due">Interest</td>
-		  		<td id="center_due">Total</td>
-		  		<td id="center_balance">Principal</td>
-		  		<td id="center_balance">Interest</td>
-		  		<td id="center_balance">Total</td>
-		  	</tr>
-		</thead>
-		<tbody>
-
-		<!-- release -->
-
-		<?php
-		if (isset($_GET['client'])){
-		  	$local_id=$_GET['client'];
-
-            $sql3 = "SELECT DATE_FORMAT(c.date_of_release, '%b-%d-%y') AS dr, c.loan_amount, c.weekly_interest_rate, c.payment_period, (c.loan_amount*c.weekly_interest_rate*0.01*c.payment_period) intBal, (c.loan_amount+(c.loan_amount*c.weekly_interest_rate*0.01*c.payment_period)) totalBal FROM cases c WHERE c.client_id=$local_id  AND c.status='Closed'";
-            $result3 = mysqli_query($conn, $sql3);;
-
-            if (mysqli_num_rows($result3) > 0) {
-                while($row = mysqli_fetch_assoc($result3)) {
-       	?>
-        	<tr>
-        		<td class="container" id="center_due">Release</td>
-        		<td class="container" id="dates"><?php echo $row['dr']?></td>
-        		<td colspan="3" id="single_due"></td>
-        		<td class="container" id="single_balance"><?php $forIntBal = number_format($row['loan_amount'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['intBal'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_balance"><?php $totIntBal = number_format($row['totalBal'], 2); echo $totIntBal;?></td>
-            </tr>
-        <?php
-        		}
-    		}
-        }
-        ?>
-
-       	<!-- expected table -->
-		<?php
-		  	
-            $sql4 = "SELECT e.expected_id, DATE_FORMAT(e.expected_due_date, '%b-%d-%y') AS dd, e.principal_due, e.interest_due, e.total_due, e.expected_principal_balance, e.expected_interest_balance, e.expected_total_balance FROM cases, expected e WHERE cases.case_id=e.case_id AND e.client_id=$local_id  AND cases.status='Closed'";
-            $result4 = mysqli_query($conn, $sql4);
-            $i = 1;
-
-            if (mysqli_num_rows($result4) > 0) {
-                // output data of each row
-                while($row = mysqli_fetch_assoc($result4)) {
-        ?>
-        	<tr>
-        		<td class="container" id="center_due"><?php echo $i; $i++; ?></td>
-        		<td class="container" id="dates"><?php echo $row['dd']?></td>
-        		<td class="container" id="single_due"><?php $forIntBal = number_format($row['principal_due'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_due"><?php $forIntBal = number_format($row['interest_due'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_due"><?php $forIntBal = number_format($row['total_due'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_principal_balance'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_interest_balance'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_total_balance'], 2); echo $forIntBal;?></td>
-            </tr>
-        <?php
-    			}
-        	}
-        ?>
-		</tbody>
-	</table>
-
-	<!-- payments -->
-	<table class="table" id="payment_table">
-		<thead>
-		  	<tr>
-		  		<td colspan="7" id="single_headsEND">PAYMENTS</td>
-		  	</tr>
-		  	<tr>
-		  		<td rowspan="2" id="dates">Turn Date</td>
-		  		<td colspan="3" id="center_due">Paid</td>
-		  		<td colspan="3" id="center_balance">Balance</td>
-		  	</tr>
-		  	<tr>
-		  		<td id="center_due">Principal</td>
-		  		<td id="center_due">Interest</td>
-		  		<td id="center_due">Turn Amount</td>
-		  		<td id="center_balance">Principal</td>
-		  		<td id="center_balance">Interest</td>
-		  		<td id="center_balance">Total</td>
-		  	</tr>
-		</thead>
-		<tbody>
+<h3 id="single_client_status">FINISHED CASES</h3>
+<br> <br>
+<?php
+if (isset($_GET['client'])){
+	$local_id=$_GET['client'];
+	$sql7 = "SELECT case_id FROM cases WHERE cases.client_id = '".$local_id."' AND cases.status = 'Closed'";
+	$result7 = $conn->query($sql7);
+	if (mysqli_num_rows($result7) > 0) {
+		while($rowS = mysqli_fetch_assoc($result7)) {
+			$sql2 = "SELECT DATE_FORMAT(c.date_of_release, '%b-%d-%y') AS rd, DATE_FORMAT(c.date_of_maturity, '%b-%d-%y') AS md FROM cases c WHERE c.client_id=$local_id AND c.status='Closed'";
+			$result2 = mysqli_query($conn, $sql2);
+			
+			if (mysqli_num_rows($result2) > 0) {
+				while($row = mysqli_fetch_assoc($result2)) {
+					?>
+					<div class="panel-group">
+					<div class="panel panel-default">
+					<div class="panel-heading">
+					<h5 class="panel-title">
+					<a data-toggle="collapse" href="#collapse1"><?php echo $row['rd'].' to '.$row['md'];?></a>
+					</h5>
+					</div>
+					<div id="collapse1" class="panel-collapse collapse">
+					<div class="panel-body">
+					
+					<?php
+				}
+			}
+			?>
+			<br>
+			<!-- div for expected table -->
+				<div class="table-responsive" id="div_tables">
+			<table class="table" id="expected_table">
+			<thead>
 			<tr>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
+			<td colspan="8" id="single_headsEND">EXPECTED</td>
 			</tr>
-		<?php
-
+			<tr>
+			<td rowspan="2" id="center_due">No.</td>
+			<td rowspan="2" id="dates">Due Date</td>
+			<td colspan="3" id="center_due">Due</td>
+			<td colspan="3" id="center_balance">Balance</td>
+			</tr>
+			<tr>
+			<td id="center_due">Principal</td>
+			<td id="center_due">Interest</td>
+			<td id="center_due">Total</td>
+			<td id="center_balance">Principal</td>
+			<td id="center_balance">Interest</td>
+			<td id="center_balance">Total</td>
+			</tr>
+			</thead>
+			<tbody>
+			
+			<!-- release -->
+			
+			<?php
+			if (isset($_GET['client'])){
+				$local_id=$_GET['client'];
+				
+				$sql3 = "SELECT DATE_FORMAT(c.date_of_release, '%b-%d-%y') AS dr, c.loan_amount, c.weekly_interest_rate, c.payment_period, (c.loan_amount*c.weekly_interest_rate*0.01*c.payment_period) intBal, (c.loan_amount+(c.loan_amount*c.weekly_interest_rate*0.01*c.payment_period)) totalBal FROM cases c WHERE c.client_id=$local_id  AND c.status='Closed'";
+				$result3 = mysqli_query($conn, $sql3);;
+				
+				if (mysqli_num_rows($result3) > 0) {
+					while($row = mysqli_fetch_assoc($result3)) {
+						?>
+						<tr>
+						<td class="container" id="center_due">Release</td>
+						<td class="container" id="dates"><?php echo $row['dr']?></td>
+						<td colspan="3" id="single_due"></td>
+						<td class="container" id="single_balance"><?php $forIntBal = number_format($row['loan_amount'], 2); echo $forIntBal;?></td>
+						<td class="container" id="single_balance"><?php $forIntBal = number_format($row['intBal'], 2); echo $forIntBal;?></td>
+						<td class="container" id="single_balance"><?php $totIntBal = number_format($row['totalBal'], 2); echo $totIntBal;?></td>
+						</tr>
+						<?php
+					}
+				}
+			}
+			?>
+			
+			<!-- expected table -->
+			<?php
+			
+			$sql4 = "SELECT e.expected_id, DATE_FORMAT(e.expected_due_date, '%b-%d-%y') AS dd, e.principal_due, e.interest_due, e.total_due, e.expected_principal_balance, e.expected_interest_balance, e.expected_total_balance FROM cases, expected e WHERE cases.case_id=e.case_id AND e.client_id=$local_id  AND cases.status='Closed'";
+			$result4 = mysqli_query($conn, $sql4);
+			$i = 1;
+			
+			if (mysqli_num_rows($result4) > 0) {
+				// output data of each row
+				while($row = mysqli_fetch_assoc($result4)) {
+					?>
+					<tr>
+					<td class="container" id="center_due"><?php echo $i; $i++; ?></td>
+					<td class="container" id="dates"><?php echo $row['dd']?></td>
+					<td class="container" id="single_due"><?php $forIntBal = number_format($row['principal_due'], 2); echo $forIntBal;?></td>
+					<td class="container" id="single_due"><?php $forIntBal = number_format($row['interest_due'], 2); echo $forIntBal;?></td>
+					<td class="container" id="single_due"><?php $forIntBal = number_format($row['total_due'], 2); echo $forIntBal;?></td>
+					<td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_principal_balance'], 2); echo $forIntBal;?></td>
+					<td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_interest_balance'], 2); echo $forIntBal;?></td>
+					<td class="container" id="single_balance"><?php $forIntBal = number_format($row['expected_total_balance'], 2); echo $forIntBal;?></td>
+					</tr>
+					<?php
+				}
+			}
+			?>
+			</tbody>
+			</table>
+			
+			<!-- payments -->
+			<table class="table" id="payment_table">
+			<thead>
+			<tr>
+			<td colspan="7" id="single_headsEND">PAYMENTS</td>
+			</tr>
+			<tr>
+			<td rowspan="2" id="dates">Turn Date</td>
+			<td colspan="3" id="center_due">Paid</td>
+			<td colspan="3" id="center_balance">Balance</td>
+			</tr>
+			<tr>
+			<td id="center_due">Principal</td>
+			<td id="center_due">Interest</td>
+			<td id="center_due">Turn Amount</td>
+			<td id="center_balance">Principal</td>
+			<td id="center_balance">Interest</td>
+			<td id="center_balance">Total</td>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			</tr>
+			<?php
+			
 			$origapb = 0;
 			$origaib = 0;
 			$origatb = 0;
-
+			
 			if (isset($_GET['client'])){
-		  	$local_id=$_GET['client'];
-
-
-
-
-            $sql5 = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, p.actual_principal, p.actual_interest, p.actual_total, c.status FROM payment p, cases c WHERE p.client_id=$local_id AND c.client_id=$local_id AND c.status='Closed'";
-            $result5 = mysqli_query($conn, $sql5);
-
-
-            /*$sql6 = "SELECT c.loan_amount, c.weekly_interest_rate, c.payment_period, c.status FROM cases c WHERE c.client_id=$local_id AND c.status='Closed'";
-            $result6 = mysqli_query($conn, $sql6);
-
- 			if (mysqli_num_rows($result6) > 0) {
- 				while($rowa = mysqli_fetch_assoc($result6)) {
- 				$origapb = $rowa['loan_amount'];
-            	$origaib = $rowa['loan_amount']*($rowa['weekly_interest_rate']*0.01)*$rowa['payment_period'];
-            	$origatb = $origapb+$origaib;
-            }
-        }*/
-            if (mysqli_num_rows($result5) > 0) {
-
-            	
-                while($row = mysqli_fetch_assoc($result5)) {
-
-               
-
-        ?>
-        	<tr>
-        		<td class="container" id="dates"><?php echo $row['turn_date']?></td>
-        		<td class="container" id="single_due"><?php $forIntBal = number_format($row['principal_paid'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_due"><?php $forIntBal = number_format($row['interest_paid'], 2); echo $forIntBal;?></td>
-        		<td class="container" id="single_due"><?php $forIntBal = number_format($row['turn_amount'], 2); echo $forIntBal;?></td>
-        		<td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_principal'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_interest'], 2); echo $forIntBal;?></td>
-                <td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_total'], 2); echo $forIntBal;?></td>
-
-            </tr>
-        <?php
-        		}
-    		}
-        }
-    }
-}
-
+				$local_id=$_GET['client'];
+				
+				
+				
+				
+				$sql5 = "SELECT DATE_FORMAT(p.turn_date, '%b-%d-%y') AS turn_date, p.turn_amount, p.principal_paid, p.interest_paid, p.actual_principal, p.actual_interest, p.actual_total, c.status FROM payment p, cases c WHERE p.client_id=$local_id AND c.client_id=$local_id AND c.status='Closed'";
+				$result5 = mysqli_query($conn, $sql5);
+				
+				
+				/*$sql6 = "SELECT c.loan_amount, c.weekly_interest_rate, c.payment_period, c.status FROM cases c WHERE c.client_id=$local_id AND c.status='Closed'";
+				$result6 = mysqli_query($conn, $sql6);
+				
+				if (mysqli_num_rows($result6) > 0) {
+				while($rowa = mysqli_fetch_assoc($result6)) {
+				$origapb = $rowa['loan_amount'];
+				$origaib = $rowa['loan_amount']*($rowa['weekly_interest_rate']*0.01)*$rowa['payment_period'];
+				$origatb = $origapb+$origaib;
+				}
+				}*/
+				if (mysqli_num_rows($result5) > 0) {
+					
+					
+					while($row = mysqli_fetch_assoc($result5)) {
+						
+						
+						
+						?>
+						<tr>
+						<td class="container" id="dates"><?php echo $row['turn_date']?></td>
+						<td class="container" id="single_due"><?php $forIntBal = number_format($row['principal_paid'], 2); echo $forIntBal;?></td>
+						<td class="container" id="single_due"><?php $forIntBal = number_format($row['interest_paid'], 2); echo $forIntBal;?></td>
+						<td class="container" id="single_due"><?php $forIntBal = number_format($row['turn_amount'], 2); echo $forIntBal;?></td>
+						<td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_principal'], 2); echo $forIntBal;?></td>
+						<td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_interest'], 2); echo $forIntBal;?></td>
+						<td class="container" id="single_balance"><?php $forIntBal = number_format($row['actual_total'], 2); echo $forIntBal;?></td>
+						
+						</tr>
+						<?php
+					}
+				}
+			}
+		}
+	}
+	
 	else{
 		echo('<br> <br><h5>No active cases.</h5><br>');
 	}
 }
 ?>
 </div>
-	      </div>
-	    </div>
-	  </div>
 </div>
 </div>

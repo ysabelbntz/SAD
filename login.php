@@ -5,17 +5,8 @@ include("database.php");
 error_reporting(E_ERROR | E_PARSE);
 session_start();
 
-$username = (isset($_POST['username']) ? $_POST['username'] : '');
-$password = (isset($_POST['password']) ? $_POST['password'] : '');
-
-
-if($username == "" || $password == "")
-{
-	include("layout2.php");
-	print '<h1>Fill in all the lines!</h1> <br>
-	<a href="index.php">Back</a>';
-	exit;
-}
+$username = (isset($_POST['username']) ? $_POST['username'] : "");
+$password = (isset($_POST['password']) ? $_POST['password'] : "");
 
 $sql = "SELECT username,password,account_type,account_id FROM accounts WHERE username='".$username."' AND account_type!=\"Closed\"";
 
@@ -41,17 +32,25 @@ if ($result->num_rows > 0)
 	}
 	else
 	{
-		include("layout2.php");
-		echo "<h1>Wrong password!</h1><br><a href='index.php'>Back</a>";
-		exit;
+		$_SESSION['errMsg'] = "Invalid username and/or password";
+		header("Location: login.php");
+		die;
 	}
 }
 else
 {
-	include("layout2.php");
-    echo "<h1>User does not exist</h1><br><a href='index.php'>Back</a>";
-    exit;
+    $_SESSION['errMsg'] = "Invalid username and/or password";
+    header("Location: index.php");
+    die;
 }
+
+if($username == "" || $password == "")
+{
+	$_SESSION['errMsg'] = "Please enter username and/or password";
+    header("Location: index.php");
+    die;
+}
+
 $conn->close();
 
 
