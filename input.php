@@ -216,7 +216,7 @@ $result = mysqli_query($conn, $sql);
     <div class="form-group"> 
       <div class="col-sm-offset-6 col-sm-6">
         <input type="submit" value="Input" class="btn btn-default" id="add_button" name="add_button"/>
-        <a href="input.php?client='.$clid.'&case='.$cid.'" class="btn btn-default" id="cancel">Cancel </a>
+        <a href="view_single.php?client='.$clid.'&case='.$cid.'" class="btn btn-default" id="cancel">Cancel </a>
       </div>
     </div>
   </form>

@@ -98,7 +98,7 @@ echo('
   <div class="form-group"> 
     <div class="col-sm-offset-4 col-sm-6">
       <input type="submit" class="btn btn-default" value="Add Case" id="add_button" name="add_button"/>
-      <a href="addcase.php" class="btn btn-default" id="cancel">Cancel</a>
+      <a href="main.php" class="btn btn-default" id="cancel">Cancel</a>
     </div>
   </div>
 </form>

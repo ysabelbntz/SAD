@@ -91,7 +91,7 @@ include("layout.php"); //this includes layout.php which contains the navbar and 
   <div class="form-group"> 
     <div class="col-sm-offset-4 col-sm-7">
       <input type="submit" value="Add Client" class="btn btn-default" id="add_button" name="add_button"/>
-      <a href="addclient.php" class="btn btn-default" id="cancel">Cancel </a>
+      <a href="main.php" class="btn btn-default" id="cancel">Cancel </a>
     </div>
   </div>
 </form>
