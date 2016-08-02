@@ -79,7 +79,7 @@ echo('
 			        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">COLLECTIONS</a>
 			        	<ul class="dropdown-menu">
 			          		<li><a href="collection.php">Collections Report</a></li>
-			         		<li><a href="portfolio.php">Portfolios Report</a></li>
+			         		<li><a href="portfolio.php">Portfolios At Risk</a></li>
 			         		<li><a href="release.php">Release Report</a></li>
 			        	</ul>
 			      	</li>
@@ -126,7 +126,7 @@ echo('
 			        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">COLLECTIONS</a>
 			        	<ul class="dropdown-menu">
 			          		<li><a href="collection.php">Collections Report</a></li>
-			         		<li><a href="portfolio.php">Portfolios Report</a></li>
+			         		<li><a href="portfolio.php">Portfolios At Risk</a></li>
 			        	</ul>
 			      	</li>
 				</ul>

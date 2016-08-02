@@ -9,7 +9,7 @@ CREATE TABLE accounts(
 	last_name VARCHAR(50) NOT NULL,
 	username VARCHAR(50) NOT NULL,
 	password VARCHAR(100) NOT NULL,
-	account_type VARCHAR(6) NOT NULL,
+	account_type VARCHAR(10) NOT NULL,
 	email VARCHAR(50),
 	contact_number VARCHAR(30),
 	address VARCHAR(255),
